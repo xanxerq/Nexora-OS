@@ -12,11 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #050811; color: #F8FAFC; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
         .glass {
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border: 1px solid rgba(56, 189, 248, 0.25);
         }
         .glow-text {
             background: linear-gradient(135deg, #F8FAFC 0%, #38BDF8 100%);
@@ -26,79 +25,159 @@
     </style>
 </head>
 <body class="bg-[#050811] text-[#F8FAFC] min-h-screen flex flex-col justify-between selection:bg-[#38BDF8]/30 selection:text-[#38BDF8]">
-    <!-- Background Glow -->
+    <!-- Background Glow Effects -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="absolute -top-40 -left-40 w-96 h-96 bg-[#38BDF8]/10 rounded-full blur-[120px]"></div>
-        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-[#1D4ED8]/10 rounded-full blur-[140px]"></div>
+        <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-[#38BDF8]/10 rounded-full blur-[140px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-[#1D4ED8]/10 rounded-full blur-[160px]"></div>
     </div>
 
-    <!-- Main Container -->
-    <main class="relative z-10 flex-grow flex flex-col items-center justify-center px-4 py-12 max-w-5xl mx-auto text-center">
-        <!-- Logo SVG -->
-        <div class="mb-6 transform hover:scale-105 transition-transform duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="110" height="110" style="margin: 0 auto; display: block; filter: drop-shadow(0 0 25px rgba(56,189,248,0.3));">
-              <defs><linearGradient id="cB" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#0284C7"/></linearGradient><linearGradient id="sM" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient><linearGradient id="iD" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1E40AF"/><stop offset="100%" stop-color="#1E1B4B"/></linearGradient><linearGradient id="dF" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#312E81"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs>
-              <g stroke="#7DD3FC" stroke-width="2" stroke-linejoin="round" stroke-opacity="0.45"><polygon points="110,175 185,130 155,210" fill="url(#iD)"/><polygon points="110,175 155,210 110,275" fill="url(#sM)"/><polygon points="155,210 185,235 110,275" fill="url(#iD)"/><polygon points="110,275 185,235 150,320" fill="url(#dF)"/><polygon points="110,275 150,320 110,365" fill="url(#iD)"/><polygon points="150,320 195,310 165,345" fill="url(#cB)"/><polygon points="150,320 165,345 110,365" fill="url(#sM)"/><polygon points="110,365 165,345 195,420" fill="url(#dF)"/><polygon points="165,345 195,340 195,420" fill="url(#iD)"/><polygon points="185,130 245,195 155,210" fill="url(#cB)"/><polygon points="155,210 245,195 225,260" fill="url(#sM)"/><polygon points="155,210 225,260 185,235" fill="url(#iD)"/><polygon points="245,195 295,255 225,260" fill="url(#cB)"/><polygon points="225,260 295,255 275,320" fill="url(#sM)"/><polygon points="185,235 225,260 275,320" fill="url(#iD)"/><polygon points="275,320 295,255 340,340" fill="url(#sM)"/><polygon points="275,320 340,340 325,405" fill="url(#iD)"/><polygon points="285,85 395,155 335,165" fill="url(#cB)"/><polygon points="285,85 335,165 285,185" fill="url(#sM)"/><polygon points="335,165 395,155 395,245" fill="url(#iD)"/><polygon points="285,185 335,165 345,230" fill="url(#cB)"/><polygon points="335,165 395,245 345,230" fill="url(#sM)"/><polygon points="285,185 345,230 295,255" fill="url(#iD)"/><polygon points="295,255 345,230 340,340" fill="url(#dF)"/><polygon points="345,230 395,245 395,355" fill="url(#iD)"/><polygon points="345,230 395,355 340,340" fill="url(#dF)"/><polygon points="340,340 395,355 325,405" fill="url(#sM)"/></g>
-              <path d="M110,175 L185,130 L285,243 L285,85 L395,155 L395,355 L325,405 L185,235 L185,312 L195,310 L195,420 L110,365 Z" fill="none" stroke="#E0F2FE" stroke-width="3.5" stroke-linejoin="round" stroke-opacity="0.85"/>
-            </svg>
-        </div>
-
-        <!-- Glass Card -->
-        <div class="glass rounded-3xl p-6 md:p-10 w-full max-w-4xl shadow-2xl relative overflow-hidden mb-6">
-            <h1 id="editable-title" class="text-3xl md:text-5xl font-extrabold tracking-wider glow-text mb-3">NEXORA OS</h1>
-            <p id="editable-subtitle" class="text-base md:text-lg text-[#94A3B8] font-medium mb-8">
-                KDE Plasma 6 • Arquitectura Crystalline • Testify AI Integrado
-            </p>
-
-            <!-- Lliurex Style Navigation Buttons -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <button onclick="showSection('info')" class="p-4 rounded-xl bg-[#1E293B]/60 border border-[#334155] hover:border-[#38BDF8] hover:bg-[#1E293B] transition-all flex flex-col items-center text-center group">
-                    <span class="text-2xl mb-1">ℹ️</span>
-                    <span class="font-semibold text-sm text-[#F8FAFC] group-hover:text-[#38BDF8]">Información</span>
-                </button>
-                <button onclick="showSection('descargas')" class="p-4 rounded-xl bg-[#1E293B]/60 border border-[#334155] hover:border-[#38BDF8] hover:bg-[#1E293B] transition-all flex flex-col items-center text-center group">
-                    <span class="text-2xl mb-1">📥</span>
-                    <span class="font-semibold text-sm text-[#F8FAFC] group-hover:text-[#38BDF8]">Descargas</span>
-                </button>
-                <button onclick="showSection('creador')" class="p-4 rounded-xl bg-[#1E293B]/60 border border-[#334155] hover:border-[#38BDF8] hover:bg-[#1E293B] transition-all flex flex-col items-center text-center group">
-                    <span class="text-2xl mb-1">⚡</span>
-                    <span class="font-semibold text-sm text-[#F8FAFC] group-hover:text-[#38BDF8]">Creador</span>
-                </button>
-                <button onclick="openAdminModal()" class="p-4 rounded-xl bg-[#1E293B]/60 border border-[#38BDF8]/40 hover:border-[#38BDF8] hover:bg-[#38BDF8]/10 transition-all flex flex-col items-center text-center group">
-                    <span class="text-2xl mb-1">🛠️</span>
-                    <span class="font-semibold text-sm text-[#38BDF8]">Modo Edición</span>
+    <!-- Header / Top Bar (Estilo Lliurex institucional) -->
+    <header class="relative z-20 bg-[#070B14]/90 border-b border-[#1E293B] sticky top-0 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="bg-[#38BDF8]/10 border border-[#38BDF8]/30 px-3 py-1.5 rounded-lg text-xs font-mono tracking-widest text-[#38BDF8]">
+                    GVA / NEXORA CORE
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-[#94A3B8]">
+                <a href="#inicio" class="hover:text-[#38BDF8] transition-colors">INICIO</a>
+                <a href="#descargas" class="hover:text-[#38BDF8] transition-colors">DESCARGAS</a>
+                <a href="#sistema" class="hover:text-[#38BDF8] transition-colors">SISTEMA</a>
+                <a href="#creador" class="hover:text-[#38BDF8] transition-colors">CREADOR</a>
+            </nav>
+            <div>
+                <button onclick="openAdminModal()" class="px-4 py-2 bg-[#1E293B] border border-[#38BDF8]/40 text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#050811] rounded-xl text-xs font-bold transition-all shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+                    🛠️ Modo Edición
                 </button>
             </div>
+        </div>
+    </header>
 
-            <!-- Dynamic Content Area -->
-            <div id="content-area" class="text-left bg-[#070B14]/60 p-6 rounded-2xl border border-[#1E293B] min-h-[140px] text-sm md:text-base text-[#94A3B8]">
-                <!-- Default Info Content -->
-                <div id="section-info">
-                    <h3 class="text-[#38BDF8] font-bold text-lg mb-2">Sobre el Sistema</h3>
-                    <p id="text-info">Nexora OS redefine la experiencia de escritorio Linux combinando la potencia de KDE Plasma 6 con la personalización de la arquitectura cristalina. Rendimiento optimizado, diseño abisal y herramientas avanzadas integradas como Testify AI.</p>
+    <!-- Hero Section (Estilo Lliurex Pro) -->
+    <section id="inicio" class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Izquierda: Títulos y subtítulos -->
+        <div class="lg:col-span-7 text-left space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-[#38BDF8]/10 border border-[#38BDF8]/30 text-[#38BDF8] text-xs font-semibold">
+                    KDE Plasma 6 • Kubuntu 26.04
+                </span>
+            </div>
+            <h1 id="editable-title" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none glow-text">
+                Más que un <span class="text-[#38BDF8]">sistema</span>
+            </h1>
+            <p id="editable-subtitle" class="text-lg sm:text-xl text-[#94A3B8] font-normal leading-relaxed">
+                Nexora OS es más que un escritorio Linux o sus apps; es un <strong class="text-[#F8FAFC]">proyecto educativo y tecnológico de arquitectura cristalina</strong> diseñado por Xanxer.
+            </p>
+        </div>
+
+        <!-- Derecha: Círculo/Logo destacado estilo Lliurex -->
+        <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-[#112240] to-[#050811] border-2 border-[#38BDF8]/30 flex items-center justify-center shadow-[0_0_50px_rgba(56,189,248,0.15)] group hover:border-[#38BDF8] transition-all duration-500">
+                <div class="absolute inset-4 rounded-full border border-dashed border-[#38BDF8]/20 animate-[spin_30s_linear_infinite]"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="160" height="160" style="filter: drop-shadow(0 0 30px rgba(56,189,248,0.4));">
+                  <defs><linearGradient id="cB" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#0284C7"/></linearGradient><linearGradient id="sM" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient><linearGradient id="iD" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1E40AF"/><stop offset="100%" stop-color="#1E1B4B"/></linearGradient><linearGradient id="dF" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#312E81"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs>
+                  <g stroke="#7DD3FC" stroke-width="2" stroke-linejoin="round" stroke-opacity="0.45"><polygon points="110,175 185,130 155,210" fill="url(#iD)"/><polygon points="110,175 155,210 110,275" fill="url(#sM)"/><polygon points="155,210 185,235 110,275" fill="url(#iD)"/><polygon points="110,275 185,235 150,320" fill="url(#dF)"/><polygon points="110,275 150,320 110,365" fill="url(#iD)"/><polygon points="150,320 195,310 165,345" fill="url(#cB)"/><polygon points="150,320 165,345 110,365" fill="url(#sM)"/><polygon points="110,365 165,345 195,420" fill="url(#dF)"/><polygon points="165,345 195,340 195,420" fill="url(#iD)"/><polygon points="185,130 245,195 155,210" fill="url(#cB)"/><polygon points="155,210 245,195 225,260" fill="url(#sM)"/><polygon points="155,210 225,260 185,235" fill="url(#iD)"/><polygon points="245,195 295,255 225,260" fill="url(#cB)"/><polygon points="225,260 295,255 275,320" fill="url(#sM)"/><polygon points="185,235 225,260 275,320" fill="url(#iD)"/><polygon points="275,320 295,255 340,340" fill="url(#sM)"/><polygon points="275,320 340,340 325,405" fill="url(#iD)"/><polygon points="285,85 395,155 335,165" fill="url(#cB)"/><polygon points="285,85 335,165 285,185" fill="url(#sM)"/><polygon points="335,165 395,155 395,245" fill="url(#iD)"/><polygon points="285,185 335,165 345,230" fill="url(#cB)"/><polygon points="335,165 395,245 345,230" fill="url(#sM)"/><polygon points="285,185 345,230 295,255" fill="url(#iD)"/><polygon points="295,255 345,230 340,340" fill="url(#dF)"/><polygon points="345,230 395,245 395,355" fill="url(#iD)"/><polygon points="345,230 395,355 340,340" fill="url(#dF)"/><polygon points="340,340 395,355 325,405" fill="url(#sM)"/></g>
+                  <path d="M110,175 L185,130 L285,243 L285,85 L395,155 L395,355 L325,405 L185,235 L185,312 L195,310 L195,420 L110,365 Z" fill="none" stroke="#E0F2FE" stroke-width="3.5" stroke-linejoin="round" stroke-opacity="0.85"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Lliurex Style Cards Section -->
+    <section id="descargas" class="relative z-10 max-w-7xl mx-auto px-6 py-8 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1: Información / Sistema -->
+            <div id="card-info" onclick="selectCard('info')" class="glass rounded-2xl p-8 cursor-pointer border border-[#334155] hover:border-[#38BDF8] transition-all duration-300 group hover:-translate-y-1 shadow-xl">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-3xl">ℹ️</span>
+                    <span class="text-xs font-mono text-[#38BDF8] uppercase tracking-wider">Detalles</span>
                 </div>
-                <!-- Default Descargas Content -->
-                <div id="section-descargas" class="hidden">
-                    <h3 class="text-[#38BDF8] font-bold text-lg mb-2">Centro de Descargas</h3>
-                    <p id="text-descargas" class="mb-4">Obtén la última ISO estable de Nexora OS optimizada para tu torre o portátil.</p>
-                    <a href="#" class="inline-block px-6 py-2.5 bg-[#38BDF8] text-[#050811] font-bold rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:bg-[#7DD3FC] transition-all">
-                        Descargar Nexora OS 1.0 ISO
+                <h3 class="text-xl font-bold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors mb-2">INFORMACIÓN</h3>
+                <p id="text-card-info" class="text-sm text-[#94A3B8] leading-relaxed">
+                    Conoce la arquitectura Crystalline, Testify AI integrado y el rendimiento optimizado para estaciones de trabajo.
+                </p>
+            </div>
+
+            <!-- Card 2: Descargas -->
+            <div id="card-descargas" onclick="selectCard('descargas')" class="glass rounded-2xl p-8 cursor-pointer border border-[#334155] hover:border-[#38BDF8] transition-all duration-300 group hover:-translate-y-1 shadow-xl">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-3xl">📥</span>
+                    <span class="text-xs font-mono text-[#38BDF8] uppercase tracking-wider">ISO Oficial</span>
+                </div>
+                <h3 class="text-xl font-bold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors mb-2">DESCARGAS</h3>
+                <p id="text-card-descargas" class="text-sm text-[#94A3B8] leading-relaxed">
+                    Obtén la imagen ISO lista para desplegar en tu torre o partición de 100 GB en Dual-Boot.
+                </p>
+            </div>
+
+            <!-- Card 3: Creador -->
+            <div id="card-creador" onclick="selectCard('creador')" class="glass rounded-2xl p-8 cursor-pointer border border-[#334155] hover:border-[#38BDF8] transition-all duration-300 group hover:-translate-y-1 shadow-xl">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-3xl">⚡</span>
+                    <span class="text-xs font-mono text-[#38BDF8] uppercase tracking-wider">Autor</span>
+                </div>
+                <h3 class="text-xl font-bold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors mb-2">CREADOR</h3>
+                <p id="text-card-creador" class="text-sm text-[#94A3B8] leading-relaxed">
+                    Proyecto independiente desarrollado por Xanxer con herramientas de IA y administración Linux avanzada.
+                </p>
+            </div>
+        </div>
+
+        <!-- Expanded Dynamic Panel (Contenido detallado al estilo Lliurex) -->
+        <div id="dynamic-panel" class="mt-8 glass rounded-2xl p-8 border border-[#38BDF8]/30 shadow-2xl">
+            <div id="panel-info" class="space-y-4">
+                <h4 class="text-xl font-bold text-[#38BDF8]">Información del Sistema</h4>
+                <p id="detail-info" class="text-[#94A3B8] leading-relaxed">
+                    Nexora OS está construido sobre una base sólida de Kubuntu con el entorno gráfico KDE Plasma 6. Incorpora gestión optimizada de recursos, diseño visual abisal con efectos de transparencia y la herramienta Testify AI integrada de serie.
+                </p>
+            </div>
+            <div id="panel-descargas" class="space-y-4 hidden">
+                <h4 class="text-xl font-bold text-[#38BDF8]">Centro de Descargas Oficial</h4>
+                <p id="detail-descargas" class="text-[#94A3B8] leading-relaxed">
+                    Descarga la versión estable compilada para arquitecturas x86_64, lista para quemar en USB o instalar en particiones dedicadas.
+                </p>
+                <div class="pt-2">
+                    <a href="#" class="inline-flex items-center gap-2 px-6 py-3 bg-[#38BDF8] text-[#050811] font-bold rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:bg-[#7DD3FC] transition-all">
+                        <span>📥</span> Descargar Nexora OS 1.0 (ISO)
                     </a>
                 </div>
-                <!-- Default Creador Content -->
-                <div id="section-creador" class="hidden">
-                    <h3 class="text-[#38BDF8] font-bold text-lg mb-2">Acerca del Creador</h3>
-                    <p id="text-creador">Desarrollado de manera independiente por <strong>Xanxer</strong> (Alexander), apasionado por la administración de sistemas, la personalización de distribuciones Linux y el desarrollo de software educativo con IA.</p>
-                </div>
+            </div>
+            <div id="panel-creador" class="space-y-4 hidden">
+                <h4 class="text-xl font-bold text-[#38BDF8]">Acerca del Creador</h4>
+                <p id="detail-creador" class="text-[#94A3B8] leading-relaxed">
+                    Desarrollado íntegramente por <strong>Xanxer</strong> (Alexander), combinando ingeniería de sistemas, scripting en terminal Linux y desarrollo web asistido por IA para crear un ecosistema operativo único y moderno.
+                </p>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Additional Features Section (Estilo Lliurex inferior) -->
+    <section id="sistema" class="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-[#1E293B]">
+        <div class="space-y-3">
+            <div class="text-[#38BDF8] text-2xl font-bold">🛡️ Testify AI</div>
+            <p class="text-xs text-[#94A3B8] leading-relaxed">
+                Asistente educativo inteligente integrado de manera nativa para consultas rápidas, generación de exámenes y soporte al estudiante.
+            </p>
+        </div>
+        <div class="space-y-3">
+            <div class="text-[#38BDF8] text-2xl font-bold">💻 Dual-Boot 100GB</div>
+            <p class="text-xs text-[#94A3B8] leading-relaxed">
+                Diseñado para coexistir perfectamente con Windows en particiones dedicadas de alto rendimiento, respetando la EFI original.
+            </p>
+        </div>
+        <div class="space-y-3">
+            <div class="text-[#38BDF8] text-2xl font-bold">💎 Crystalline UX</div>
+            <p class="text-xs text-[#94A3B8] leading-relaxed">
+                Pantalla de bienvenida SDDM y Splash Screen personalizados con detección de usuario y tonos abisales profesionales.
+            </p>
+        </div>
+    </section>
 
     <!-- Admin Login Modal -->
     <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="glass p-8 rounded-3xl max-w-md w-full border border-[#38BDF8]/30 shadow-2xl relative text-center">
-            <h3 class="text-xl font-bold text-[#38BDF8] mb-4">Acceso Modo Edición</h3>
-            <p class="text-xs text-[#94A3B8] mb-6">Introduce las credenciales de administrador para desbloquear la personalización en vivo.</p>
+        <div class="glass p-8 rounded-3xl max-w-md w-full border border-[#38BDF8]/40 shadow-2xl relative text-center">
+            <h3 class="text-xl font-bold text-[#38BDF8] mb-2">Acceso Modo Edición</h3>
+            <p class="text-xs text-[#94A3B8] mb-6">Introduce las credenciales de administrador para desbloquear la edición en vivo de los textos.</p>
             
             <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
                 <div>
@@ -121,33 +200,38 @@
 
     <!-- Edit Toolbar (Hidden by default) -->
     <div id="edit-toolbar" class="fixed bottom-0 left-0 right-0 bg-[#070B14]/95 border-t border-[#38BDF8]/40 p-4 hidden z-40 backdrop-blur-md shadow-2xl">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
             <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></span>
-                <span class="text-xs font-bold text-[#38BDF8] uppercase tracking-wider">Modo Edición Activo (Xanxer)</span>
+                <span class="text-xs font-bold text-[#38BDF8] uppercase tracking-wider">Modo Edición Activo (Xanxer) - Haz clic en cualquier texto para modificarlo</span>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="toggleEditMode()" class="px-4 py-2 bg-[#38BDF8] text-[#050811] text-xs font-bold rounded-xl hover:bg-[#7DD3FC] transition-all shadow-[0_0_15px_rgba(56,189,248,0.4)]">Guardar y Salir</button>
+                <button onclick="toggleEditMode()" class="px-5 py-2.5 bg-[#38BDF8] text-[#050811] text-xs font-bold rounded-xl hover:bg-[#7DD3FC] transition-all shadow-[0_0_15px_rgba(56,189,248,0.4)">Guardar y Salir</button>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="relative z-10 py-6 text-center text-xs text-[#475569] font-mono tracking-widest border-t border-[#1E293B]/50">
+    <footer class="relative z-10 py-8 text-center text-xs text-[#475569] font-mono tracking-widest border-t border-[#1E293B]">
         SYSTEM CORE BY XANXER © 2026
     </footer>
 
     <script>
-        function showSection(sectionId) {
+        function selectCard(sectionId) {
             ['info', 'descargas', 'creador'].forEach(id => {
-                const el = document.getElementById('section-' + id);
+                const panel = document.getElementById('panel-' + id);
+                const card = document.getElementById('card-' + id);
                 if (id === sectionId) {
-                    el.classList.remove('hidden');
+                    panel.classList.remove('hidden');
+                    card.classList.add('border-[#38BDF8]', 'bg-[#1E293B]/40');
                 } else {
-                    el.classList.add('hidden');
+                    panel.classList.add('hidden');
+                    card.classList.remove('border-[#38BDF8]', 'bg-[#1E293B]/40');
                 }
             });
         }
+
+        selectCard('info');
 
         function openAdminModal() {
             document.getElementById('admin-modal').classList.remove('hidden');
@@ -169,27 +253,39 @@
                 closeAdminModal();
                 enableEditing();
             } else {
-                document.getElementById('login-error').classList.remove('hidden');
+                document.getElementById('login-error').classList.add('hidden');
             }
         }
 
         function enableEditing() {
             document.getElementById('edit-toolbar').classList.remove('hidden');
-            const editables = ['editable-title', 'editable-subtitle', 'text-info', 'text-descargas', 'text-creador'];
+            const editables = [
+                'editable-title', 'editable-subtitle', 
+                'text-card-info', 'text-card-descargas', 'text-card-creador',
+                'detail-info', 'detail-descargas', 'detail-creador'
+            ];
             editables.forEach(id => {
                 const el = document.getElementById(id);
-                el.contentEditable = "true";
-                el.classList.add('border', 'border-dashed', 'border-[#38BDF8]/50', 'p-2', 'rounded-lg', 'bg-[#050811]/40');
+                if(el) {
+                    el.contentEditable = "true";
+                    el.classList.add('border', 'border-dashed', 'border-[#38BDF8]/60', 'p-2', 'rounded-lg', 'bg-[#050811]/60');
+                }
             });
         }
 
         function toggleEditMode() {
             document.getElementById('edit-toolbar').classList.add('hidden');
-            const editables = ['editable-title', 'editable-subtitle', 'text-info', 'text-descargas', 'text-creador'];
+            const editables = [
+                'editable-title', 'editable-subtitle', 
+                'text-card-info', 'text-card-descargas', 'text-card-creador',
+                'detail-info', 'detail-descargas', 'detail-creador'
+            ];
             editables.forEach(id => {
                 const el = document.getElementById(id);
-                el.contentEditable = "false";
-                el.classList.remove('border', 'border-dashed', 'border-[#38BDF8]/50', 'p-2', 'rounded-lg', 'bg-[#050811]/40');
+                if(el) {
+                    el.contentEditable = "false";
+                    el.classList.remove('border', 'border-dashed', 'border-[#38BDF8]/60', 'p-2', 'rounded-lg', 'bg-[#050811]/60');
+                }
             });
             alert('¡Cambios guardados con éxito en la sesión actual, jefe!');
         }
