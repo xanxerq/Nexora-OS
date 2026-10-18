@@ -1,0 +1,6 @@
+{
+  "name": "Nexora OS - Crystalline Architecture Linux",
+  "description": "Sitio oficial de Nexora OS: sistema operativo basado en Kubuntu 26.04 con KDE Plasma 6, arquitectura cristalina y Testify AI integrado creado por Xanxer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
