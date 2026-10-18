@@ -1,22 +1,102 @@
-<!doctype html>
-<html lang="es" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEXORA OS | KDE Plasma 6 • Arquitectura Crystalline</title>
-    <meta name="description" content="Sitio oficial de Nexora OS: sistema operativo basado en Kubuntu 26.04 con KDE Plasma 6, arquitectura cristalina y Testify AI integrado creado por Xanxer." />
-    
-    <meta property="og:title" content="NEXORA OS | KDE Plasma 6 • Arquitectura Crystalline" />
-    <meta property="og:description" content="Sistema operativo basado en Kubuntu 26.04 con KDE Plasma 6, arquitectura cristalina y Testify AI integrado creado por Xanxer." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#050811] text-[#F8FAFC] antialiased selection:bg-[#38BDF8]/30 selection:text-[#38BDF8] overflow-x-hidden font-sans">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora OS | Descargas Oficiales</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body {
+            background-color: #050811;
+            background-image: radial-gradient(circle at 50% 0%, #112240 0%, #050811 60%);
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .glass-container {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin: 20px 0 10px;
+            background: linear-gradient(to right, #F8FAFC, #38BDF8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.subtitle {
+            color: #94A3B8;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-client {
+            background-color: #38BDF8;
+            color: #070B14;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+        .btn-client:hover {
+            background-color: #7DD3FC;
+            transform: translateY(-2px);
+        }
+        .btn-server {
+            background-color: transparent;
+            color: #38BDF8;
+            border: 2px solid #38BDF8;
+        }
+        .btn-server:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+            transform: translateY(-2px);
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #475569;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100" height="100" style="margin: 0 auto; display: block;">
+            <defs><linearGradient id="cB" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#0284C7"/></linearGradient><linearGradient id="sM" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient><linearGradient id="iD" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1E40AF"/><stop offset="100%" stop-color="#1E1B4B"/></linearGradient><linearGradient id="dF" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#312E81"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs>
+            <g stroke="#7DD3FC" stroke-width="2" stroke-linejoin="round" stroke-opacity="0.45"><polygon points="110,175 185,130 155,210" fill="url(#iD)"/><polygon points="110,175 155,210 110,275" fill="url(#sM)"/><polygon points="155,210 185,235 110,275" fill="url(#iD)"/><polygon points="110,275 185,235 150,320" fill="url(#dF)"/><polygon points="110,275 150,320 110,365" fill="url(#iD)"/><polygon points="150,320 195,310 165,345" fill="url(#cB)"/><polygon points="150,320 165,345 110,365" fill="url(#sM)"/><polygon points="110,365 165,345 195,420" fill="url(#dF)"/><polygon points="165,345 195,340 195,420" fill="url(#iD)"/><polygon points="185,130 245,195 155,210" fill="url(#cB)"/><polygon points="155,210 245,195 225,260" fill="url(#sM)"/><polygon points="155,210 225,260 185,235" fill="url(#iD)"/><polygon points="245,195 295,255 225,260" fill="url(#cB)"/><polygon points="225,260 295,255 275,320" fill="url(#sM)"/><polygon points="185,235 225,260 275,320" fill="url(#iD)"/><polygon points="275,320 295,255 340,340" fill="url(#sM)"/><polygon points="275,320 340,340 325,405" fill="url(#iD)"/><polygon points="285,85 395,155 335,165" fill="url(#cB)"/><polygon points="285,85 335,165 285,185" fill="url(#sM)"/><polygon points="335,165 395,155 395,245" fill="url(#iD)"/><polygon points="285,185 335,165 345,230" fill="url(#cB)"/><polygon points="335,165 395,245 345,230" fill="url(#sM)"/><polygon points="285,185 345,230 295,255" fill="url(#iD)"/><polygon points="295,255 345,230 340,340" fill="url(#dF)"/><polygon points="345,230 395,245 395,355" fill="url(#iD)"/><polygon points="345,230 395,355 340,340" fill="url(#dF)"/><polygon points="340,340 395,355 325,405" fill="url(#sM)"/></g>
+            <path d="M110,175 L185,130 L285,243 L285,85 L395,155 L395,355 L325,405 L185,235 L185,312 L195,310 L195,420 L110,365 Z" fill="none" stroke="#E0F2FE" stroke-width="3.5" stroke-linejoin="round" stroke-opacity="0.85"/>
+        </svg>
+        <h1>NEXORA OS</h1>
+        <p class="subtitle">KDE Plasma 6 • Arquitectura Crystalline • Testify AI Integrado</p>
+        <div class="buttons">
+            <a href="#" class="btn btn-client">Descargar Client Edition</a>
+            <a href="#" class="btn btn-server">Descargar Server Edition</a>
+        </div>
+    </div>
+    <div class="footer">SYSTEM CORE BY XANXER © 2026</div>
+</body>
 </html>
