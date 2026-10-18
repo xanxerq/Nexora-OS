@@ -1,14 +1,14 @@
 import React from 'react';
 import { NexoraLogo } from './NexoraLogo';
-import { Download, Terminal, Cpu, ShieldCheck, Sparkles, ChevronRight, Layers } from 'lucide-react';
+import { Download, Cpu, ShieldCheck, Sparkles, ChevronRight, Layers, Monitor } from 'lucide-react';
 
 interface HeroSectionProps {
-  onSelectEdition: (edition: 'client' | 'server') => void;
+  onDownloadNow: () => void;
   onExploreDesktop: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
-  onSelectEdition,
+  onDownloadNow,
   onExploreDesktop,
 }) => {
   return (
@@ -44,7 +44,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Subtle decorative crystal badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#112240]/80 border border-[#38BDF8]/40 mb-6 text-xs font-mono text-[#38BDF8] tracking-wider shadow-[0_0_15px_rgba(56,189,248,0.2)]">
           <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
-          <span>KUBUNTU 26.04 LTS CORE • RELEASE CANDIDATE</span>
+          <span>KUBUNTU 26.04 LTS CORE • VERSIÓN OFICIAL</span>
         </div>
 
         {/* Official Logo SVG Embedded directly above the title */}
@@ -77,42 +77,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           Construida sobre la solidez de Kubuntu 26.04 con Wayland de baja latencia y compositor translúcido KWin Crystalline.
         </p>
 
-        {/* Dos botones centrales muy llamativos con efectos al pasar el ratón por encima */}
+        {/* Botón Central Muy Llamativo: Descargar Ahora */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-10">
-          {/* Botón 1: Descargar Client Edition */}
           <button
-            onClick={() => onSelectEdition('client')}
-            className="w-full sm:w-auto group relative px-8 py-4 rounded-xl bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#38BDF8] text-white font-bold text-base tracking-wide shadow-[0_0_25px_rgba(56,189,248,0.45)] hover:shadow-[0_0_40px_rgba(56,189,248,0.8)] border border-[#BAE6FD]/60 transition-all duration-300 hover:scale-[1.04] active:scale-[0.98] cursor-pointer overflow-hidden"
-            aria-label="Descargar Client Edition"
+            onClick={onDownloadNow}
+            className="w-full sm:w-auto min-w-[280px] sm:min-w-[320px] group relative px-10 py-5 rounded-2xl bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#38BDF8] text-white font-black text-lg tracking-wide shadow-[0_0_35px_rgba(56,189,248,0.5)] hover:shadow-[0_0_55px_rgba(56,189,248,0.9)] border-2 border-[#BAE6FD]/70 transition-all duration-300 hover:scale-[1.05] active:scale-[0.98] cursor-pointer overflow-hidden"
+            aria-label="Descargar Ahora Nexora OS"
           >
             {/* Shimmer sweep effect */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform pointer-events-none" />
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform pointer-events-none" />
             
             <div className="flex items-center justify-center gap-3">
-              <Download className="w-5 h-5 text-white group-hover:-translate-y-0.5 transition-transform" />
-              <span>Descargar Client Edition</span>
+              <Download className="w-6 h-6 text-white group-hover:-translate-y-1 transition-transform drop-shadow" />
+              <span>Descargar Ahora</span>
             </div>
-            <div className="text-[11px] font-normal text-white/90 mt-0.5 font-mono">
-              Desktop GUI • 4.2 GB • Wayland • x86_64
+            <div className="text-xs font-normal text-white/90 mt-1 font-mono tracking-normal">
+              Nexora OS 26.04 LTS • ISO Oficial (4.2 GB)
             </div>
           </button>
 
-          {/* Botón 2: Descargar Server Edition */}
           <button
-            onClick={() => onSelectEdition('server')}
-            className="w-full sm:w-auto group relative px-8 py-4 rounded-xl bg-[#0B192E]/90 hover:bg-[#112240] text-[#F8FAFC] font-bold text-base tracking-wide border-2 border-[#38BDF8]/60 hover:border-[#38BDF8] shadow-[0_0_18px_rgba(56,189,248,0.25)] hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] transition-all duration-300 hover:scale-[1.04] active:scale-[0.98] cursor-pointer overflow-hidden"
-            aria-label="Descargar Server Edition"
+            onClick={onExploreDesktop}
+            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#0B192E]/80 hover:bg-[#112240] text-[#E2E8F0] hover:text-[#38BDF8] font-bold text-sm border border-[#38BDF8]/40 hover:border-[#38BDF8] shadow-[0_0_15px_rgba(56,189,248,0.15)] transition-all duration-300 hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2"
           >
-            {/* Subtle glow border reflection */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-[#38BDF8]/20 to-transparent transition-transform pointer-events-none" />
-
-            <div className="flex items-center justify-center gap-3">
-              <Terminal className="w-5 h-5 text-[#38BDF8] group-hover:text-white transition-colors" />
-              <span>Descargar Server Edition</span>
-            </div>
-            <div className="text-[11px] font-normal text-[#94A3B8] group-hover:text-[#BAE6FD] mt-0.5 font-mono transition-colors">
-              Headless & Cockpit • 1.8 GB • Xanxer Kernel
-            </div>
+            <Monitor className="w-4 h-4 text-[#38BDF8]" />
+            <span>Ver Escritorio Oficial</span>
           </button>
         </div>
 

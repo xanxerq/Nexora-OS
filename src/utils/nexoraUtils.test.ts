@@ -9,28 +9,25 @@ import {
 
 test('checkHardwareCompatibility flags non-64bit systems', () => {
   const result = checkHardwareCompatibility(
-    { ramGb: 16, cpuCores: 8, diskGb: 500, is64Bit: false, hasUefi: true },
-    'client'
+    { ramGb: 16, cpuCores: 8, diskGb: 500, is64Bit: false, hasUefi: true }
   );
   assert.equal(result.canRun, false);
   assert.equal(result.tier, 'insufficient');
   assert.ok(result.missingRequirements.some(r => r.includes('64-bit')));
 });
 
-test('checkHardwareCompatibility gives optimal for high spec client', () => {
+test('checkHardwareCompatibility gives optimal for high spec system', () => {
   const result = checkHardwareCompatibility(
-    { ramGb: 32, cpuCores: 8, diskGb: 500, is64Bit: true, hasUefi: true },
-    'client'
+    { ramGb: 32, cpuCores: 8, diskGb: 500, is64Bit: true, hasUefi: true }
   );
   assert.equal(result.canRun, true);
   assert.equal(result.tier, 'optimal');
   assert.equal(result.missingRequirements.length, 0);
 });
 
-test('checkHardwareCompatibility approves server with 4GB RAM', () => {
+test('checkHardwareCompatibility approves recommended specs', () => {
   const result = checkHardwareCompatibility(
-    { ramGb: 4, cpuCores: 2, diskGb: 40, is64Bit: true, hasUefi: true },
-    'server'
+    { ramGb: 8, cpuCores: 4, diskGb: 60, is64Bit: true, hasUefi: true }
   );
   assert.equal(result.canRun, true);
   assert.equal(result.tier, 'recommended');
@@ -56,6 +53,6 @@ test('formatFileSize converts bytes to human readable sizes', () => {
 });
 
 test('formatSha256 abbreviates 64-character hash properly', () => {
-  const hash = 'a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f67890';
-  assert.equal(formatSha256(hash), 'a1b2c3d4...e5f67890');
+  const hash = 'e7b92f3a408b1c592a83f9c6d4e1a7b8c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7';
+  assert.equal(formatSha256(hash), 'e7b92f3a...c4d5e6f7');
 });

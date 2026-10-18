@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import {
   Download,
-  Terminal,
   Cpu,
-  HardDrive,
   CheckCircle,
   Copy,
   ExternalLink,
-  ShieldAlert,
   Sparkles,
   Layers,
-  HelpCircle,
-  Hash
+  Hash,
+  ShieldCheck,
+  Usb,
+  HardDrive
 } from 'lucide-react';
 import { checkHardwareCompatibility, HardwareSpecs } from '../utils/nexoraUtils';
 
 export const DownloadsSection: React.FC = () => {
-  const [copiedSha, setCopiedSha] = useState<string | null>(null);
-  const [downloadModalEdition, setDownloadModalEdition] = useState<'client' | 'server' | null>(null);
+  const [copiedSha, setCopiedSha] = useState(false);
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false);
 
   // Hardware compatibility calculator state
   const [specs, setSpecs] = useState<HardwareSpecs>({
@@ -28,20 +27,17 @@ export const DownloadsSection: React.FC = () => {
     hasUefi: true,
   });
 
-  const clientCompat = checkHardwareCompatibility(specs, 'client');
-  const serverCompat = checkHardwareCompatibility(specs, 'server');
+  const compat = checkHardwareCompatibility(specs);
+  const officialSha = 'e7b92f3a408b1c592a83f9c6d4e1a7b8c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7';
 
-  const clientSha = 'e7b92f3a408b1c592a83f9c6d4e1a7b8c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7';
-  const serverSha = '3a408b1c592a83f9c6d4e1a7b8c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7e7b92f';
-
-  const copyToClipboard = (text: string, id: string) => {
+  const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    setCopiedSha(id);
-    setTimeout(() => setCopiedSha(null), 2500);
+    setCopiedSha(true);
+    setTimeout(() => setCopiedSha(false), 2500);
   };
 
-  const handleDownload = (edition: 'client' | 'server') => {
-    setDownloadModalEdition(edition);
+  const handleDownload = () => {
+    setDownloadModalOpen(true);
   };
 
   return (
@@ -50,182 +46,107 @@ export const DownloadsSection: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0284C7]/10 blur-[140px] pointer-events-none rounded-full" />
 
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
+      <div className="text-center max-w-3xl mx-auto mb-14">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#38BDF8]/10 border border-[#38BDF8]/30 text-xs font-mono text-[#38BDF8] mb-3">
           <Download className="w-3.5 h-3.5" />
-          <span>CANAL OFICIAL DE DESCARGAS 2026</span>
+          <span>CANAL OFICIAL DE DESCARGA 2026</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
-          Descargas Oficiales de <span className="bg-gradient-to-r from-white via-[#E0F2FE] to-[#38BDF8] bg-clip-text text-transparent">NEXORA OS</span>
+          Descarga Oficial de <span className="bg-gradient-to-r from-white via-[#E0F2FE] to-[#38BDF8] bg-clip-text text-transparent">NEXORA OS</span>
         </h2>
         <p className="mt-3 text-[#94A3B8] text-base">
-          Imágenes ISO certificadas compiladas con Kubuntu 26.04 Core, entorno KDE Plasma 6 y suite Crystalline.
+          Imagen ISO oficial compilada sobre Kubuntu 26.04 Core con KDE Plasma 6, arquitectura Crystalline y Testify AI integrado.
         </p>
       </div>
 
-      {/* Main Download Cards Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        
-        {/* CARD 1: Client Edition */}
-        <div className="relative rounded-3xl p-8 backdrop-blur-xl bg-[#0B192E]/70 border-2 border-[#38BDF8]/40 hover:border-[#38BDF8] shadow-[0_10px_40px_rgba(0,0,0,0.5),0_0_25px_rgba(56,189,248,0.15)] hover:shadow-[0_15px_50px_rgba(56,189,248,0.3)] transition-all duration-300 flex flex-col justify-between group">
-          <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#38BDF8]/20 border border-[#38BDF8]/50 text-[#38BDF8] text-[11px] font-mono font-bold tracking-wider">
-            RECOMENDADO
-          </div>
-
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0284C7] to-[#38BDF8] flex items-center justify-center text-white shadow-[0_0_15px_#38BDF8]">
-                <Layers className="w-6 h-6" />
+      {/* Main Single Download Card */}
+      <div className="max-w-4xl mx-auto mb-16">
+        <div className="relative rounded-3xl p-8 sm:p-12 backdrop-blur-2xl bg-[#0B192E]/75 border-2 border-[#38BDF8]/50 shadow-[0_15px_50px_rgba(0,0,0,0.6),0_0_35px_rgba(56,189,248,0.2)] transition-all duration-300">
+          
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-[#38BDF8]/20">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0284C7] via-[#0EA5E9] to-[#38BDF8] flex items-center justify-center text-white shadow-[0_0_20px_#38BDF8] shrink-0">
+                <Layers className="w-8 h-8" />
               </div>
               <div>
-                <h3 className="text-2xl font-black text-[#F8FAFC]">Client Edition</h3>
-                <p className="text-xs text-[#38BDF8] font-mono">v26.04 LTS • Desktop Workstation</p>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#F8FAFC]">
+                    Nexora OS 26.04 LTS
+                  </h3>
+                  <span className="text-[10px] font-mono tracking-widest px-2 py-0.5 rounded-full bg-[#38BDF8]/20 border border-[#38BDF8]/40 text-[#38BDF8] font-bold">
+                    OFICIAL
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-[#38BDF8] font-mono mt-1">
+                  Kubuntu 26.04 Base • KDE Plasma 6.2 • Wayland • x86_64
+                </p>
               </div>
             </div>
 
-            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
-              Edición completa con interfaz gráfica Crystalline basada en KDE Plasma 6 sobre Wayland. Incluye drivers propietarios Nvidia/AMD, compositor KWin pre-configurado y el asistente Testify AI integrado.
-            </p>
+            {/* Quick action button */}
+            <button
+              onClick={handleDownload}
+              className="w-full md:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#38BDF8] text-white font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(56,189,248,0.5)] hover:shadow-[0_0_40px_rgba(56,189,248,0.8)] border border-[#BAE6FD]/70 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2.5 shrink-0"
+            >
+              <Download className="w-5 h-5 text-white" />
+              <span>Descargar Ahora (4.2 GB)</span>
+            </button>
+          </div>
 
-            {/* Specs list */}
-            <div className="space-y-2.5 mb-8 text-xs text-[#E2E8F0] font-mono">
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Tamaño de Imagen:</span>
-                <span className="font-semibold text-[#F8FAFC]">4.2 GB (ISO Híbrida)</span>
-              </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Entorno Gráfico:</span>
-                <span className="text-[#38BDF8]">KDE Plasma 6.2 (Wayland)</span>
-              </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Núcleo Base:</span>
-                <span>Kubuntu 26.04 (Ubuntu LTS 2026-2031)</span>
-              </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Kernel Xanxer:</span>
-                <span>6.12.0 Low-Latency Crystalline</span>
-              </div>
+          <p className="text-[#94A3B8] text-sm sm:text-base leading-relaxed my-6">
+            La imagen estándar contiene todo lo necesario para comenzar: instalador gráfico Calamares de última generación, drivers gráficos propietarios Nvidia y código abierto Mesa AMD/Intel preconfigurados, compositor KWin Crystalline con desenfoque de 16px y el asistente Testify AI nativo en local.
+          </p>
+
+          {/* Technical specifications grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-2xl bg-[#050811]/70 border border-[#38BDF8]/20 text-xs font-mono mb-6">
+            <div>
+              <span className="text-[#94A3B8] block text-[11px]">Tamaño de Descarga:</span>
+              <span className="font-bold text-[#F8FAFC] text-sm">4.2 GB</span>
             </div>
+            <div>
+              <span className="text-[#94A3B8] block text-[11px]">Entorno de Escritorio:</span>
+              <span className="font-bold text-[#38BDF8] text-sm">KDE Plasma 6.2</span>
+            </div>
+            <div>
+              <span className="text-[#94A3B8] block text-[11px]">Servidor Gráfico:</span>
+              <span className="font-bold text-[#F8FAFC] text-sm">Wayland Nativo</span>
+            </div>
+            <div>
+              <span className="text-[#94A3B8] block text-[11px]">Kernel Xanxer:</span>
+              <span className="font-bold text-[#38BDF8] text-sm">6.12.0 Crystalline</span>
+            </div>
+          </div>
 
-            {/* SHA256 Checksum box */}
-            <div className="p-3 rounded-xl bg-[#050811]/70 border border-[#38BDF8]/20 mb-6">
-              <div className="flex items-center justify-between text-[11px] mb-1">
-                <span className="text-[#94A3B8] flex items-center gap-1 font-mono">
-                  <Hash className="w-3 h-3 text-[#38BDF8]" /> SHA256 Checksum:
-                </span>
-                <button
-                  onClick={() => copyToClipboard(clientSha, 'client')}
-                  className="text-[#38BDF8] hover:text-white flex items-center gap-1 font-mono transition-colors cursor-pointer"
-                >
-                  {copiedSha === 'client' ? (
-                    <>
-                      <CheckCircle className="w-3 h-3 text-[#10B981]" />
-                      <span className="text-[#10B981]">Copiado</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3 h-3" />
-                      <span>Copiar</span>
-                    </>
-                  )}
-                </button>
-              </div>
-              <code className="text-[10px] text-[#64748B] block truncate font-mono">
-                {clientSha}
+          {/* SHA256 Checksum box */}
+          <div className="p-4 rounded-2xl bg-[#050811]/80 border border-[#38BDF8]/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="overflow-hidden w-full">
+              <span className="text-[#94A3B8] text-xs flex items-center gap-1.5 font-mono mb-1">
+                <Hash className="w-3.5 h-3.5 text-[#38BDF8]" /> SHA-256 Checksum Oficial:
+              </span>
+              <code className="text-xs text-[#CBD5E1] block truncate font-mono select-all">
+                {officialSha}
               </code>
             </div>
+
+            <button
+              onClick={() => copyToClipboard(officialSha)}
+              className="px-4 py-2 rounded-xl bg-[#112240] hover:bg-[#38BDF8]/20 border border-[#38BDF8]/30 text-xs font-mono text-[#38BDF8] flex items-center gap-2 transition-colors cursor-pointer shrink-0"
+            >
+              {copiedSha ? (
+                <>
+                  <CheckCircle className="w-3.5 h-3.5 text-[#10B981]" />
+                  <span className="text-[#10B981]">¡Checksum Copiado!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copiar Hash</span>
+                </>
+              )}
+            </button>
           </div>
 
-          {/* Action button */}
-          <button
-            onClick={() => handleDownload('client')}
-            className="w-full relative group/btn py-4 rounded-xl bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#38BDF8] text-white font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(56,189,248,0.4)] hover:shadow-[0_0_40px_rgba(56,189,248,0.8)] border border-[#BAE6FD]/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-3 overflow-hidden"
-          >
-            <Download className="w-5 h-5 text-white group-hover/btn:-translate-y-0.5 transition-transform" />
-            <span>Descargar Client Edition (ISO)</span>
-          </button>
         </div>
-
-        {/* CARD 2: Server Edition */}
-        <div className="relative rounded-3xl p-8 backdrop-blur-xl bg-[#0B192E]/70 border-2 border-[#38BDF8]/30 hover:border-[#38BDF8] shadow-[0_10px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(56,189,248,0.1)] hover:shadow-[0_15px_50px_rgba(56,189,248,0.25)] transition-all duration-300 flex flex-col justify-between group">
-          <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#112240] border border-[#38BDF8]/30 text-[#94A3B8] text-[11px] font-mono tracking-wider">
-            ENTERPRISE & CLOUD
-          </div>
-
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-[#112240] border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shadow-[0_0_15px_rgba(56,189,248,0.2)]">
-                <Terminal className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-[#F8FAFC]">Server Edition</h3>
-                <p className="text-xs text-[#38BDF8] font-mono">v26.04 LTS • High Performance Headless</p>
-              </div>
-            </div>
-
-            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
-              Optimizado para microservicios, virtualización y servidores en la nube. Incluye el panel de gestión remota Crystalline Cockpit Web, Docker/Podman out-of-the-box y el kernel Xanxer optimizado para rendimiento sostenido.
-            </p>
-
-            {/* Specs list */}
-            <div className="space-y-2.5 mb-8 text-xs text-[#E2E8F0] font-mono">
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Tamaño de Imagen:</span>
-                <span className="font-semibold text-[#F8FAFC]">1.8 GB (Minimal NetInstall)</span>
-              </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Interfaz de Control:</span>
-                <span className="text-[#38BDF8]">Headless CLI + Crystalline Cockpit Web</span>
-              </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Contenedores:</span>
-                <span>Docker Engine & Podman 5 preinstalados</span>
-              </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#38BDF8]/15">
-                <span className="text-[#94A3B8]">Kernel Xanxer:</span>
-                <span>6.12.0 Server Core (ZFS / Btrfs Ready)</span>
-              </div>
-            </div>
-
-            {/* SHA256 Checksum box */}
-            <div className="p-3 rounded-xl bg-[#050811]/70 border border-[#38BDF8]/20 mb-6">
-              <div className="flex items-center justify-between text-[11px] mb-1">
-                <span className="text-[#94A3B8] flex items-center gap-1 font-mono">
-                  <Hash className="w-3 h-3 text-[#38BDF8]" /> SHA256 Checksum:
-                </span>
-                <button
-                  onClick={() => copyToClipboard(serverSha, 'server')}
-                  className="text-[#38BDF8] hover:text-white flex items-center gap-1 font-mono transition-colors cursor-pointer"
-                >
-                  {copiedSha === 'server' ? (
-                    <>
-                      <CheckCircle className="w-3 h-3 text-[#10B981]" />
-                      <span className="text-[#10B981]">Copiado</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3 h-3" />
-                      <span>Copiar</span>
-                    </>
-                  )}
-                </button>
-              </div>
-              <code className="text-[10px] text-[#64748B] block truncate font-mono">
-                {serverSha}
-              </code>
-            </div>
-          </div>
-
-          {/* Action button */}
-          <button
-            onClick={() => handleDownload('server')}
-            className="w-full relative group/btn py-4 rounded-xl bg-[#0B192E] hover:bg-[#112240] text-[#F8FAFC] font-bold text-sm tracking-wide border-2 border-[#38BDF8]/50 hover:border-[#38BDF8] shadow-[0_0_20px_rgba(56,189,248,0.2)] hover:shadow-[0_0_35px_rgba(56,189,248,0.6)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-3 overflow-hidden"
-          >
-            <Terminal className="w-5 h-5 text-[#38BDF8] group-hover/btn:text-white transition-colors" />
-            <span>Descargar Server Edition (ISO)</span>
-          </button>
-        </div>
-
       </div>
 
       {/* Interactive Hardware Requirements Calculator */}
@@ -244,20 +165,12 @@ export const DownloadsSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Status Badges */}
-          <div className="flex items-center gap-3">
-            <div className="px-3.5 py-1.5 rounded-lg bg-[#050811] border border-[#38BDF8]/30 text-xs">
-              <span className="text-[#94A3B8] block text-[10px]">Client Edition:</span>
-              <span className={`font-bold font-mono ${clientCompat.canRun ? 'text-[#38BDF8]' : 'text-[#EF4444]'}`}>
-                {clientCompat.tier.toUpperCase()}
-              </span>
-            </div>
-            <div className="px-3.5 py-1.5 rounded-lg bg-[#050811] border border-[#38BDF8]/30 text-xs">
-              <span className="text-[#94A3B8] block text-[10px]">Server Edition:</span>
-              <span className={`font-bold font-mono ${serverCompat.canRun ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
-                {serverCompat.tier.toUpperCase()}
-              </span>
-            </div>
+          {/* Status Badge */}
+          <div className="px-4 py-2 rounded-xl bg-[#050811] border border-[#38BDF8]/40 text-xs">
+            <span className="text-[#94A3B8] block text-[10px]">Rendimiento Estimado:</span>
+            <span className={`font-bold font-mono text-sm ${compat.canRun ? 'text-[#38BDF8]' : 'text-[#EF4444]'}`}>
+              {compat.tier.toUpperCase()}
+            </span>
           </div>
         </div>
 
@@ -334,20 +247,20 @@ export const DownloadsSection: React.FC = () => {
           <div>
             <span className="font-semibold text-[#F8FAFC]">Diagnóstico del Arquitecto Xanxer: </span>
             <span className="text-[#CBD5E1]">
-              {clientCompat.tier === 'optimal'
+              {compat.tier === 'optimal'
                 ? '¡Tu equipo tiene un hardware excelente! Podrás activar todos los efectos Crystalline KWin a 60/120 FPS y ejecutar Testify AI en local sin comprometer recursos.'
-                : clientCompat.tier === 'recommended'
-                ? 'Tu configuración es ideal para el uso diario de Nexora Client Edition con fluidez y compositor Wayland a máxima resolución.'
-                : clientCompat.tier === 'minimum'
-                ? 'Tu equipo cumple los requisitos mínimos. Se recomienda desactivar efectos pesados de desenfoque secundario en Ajustes KWin.'
-                : 'Tu equipo no cumple los requisitos mínimos para Client Edition. Prueba Nexora Server Edition.'}
+                : compat.tier === 'recommended'
+                ? 'Tu configuración es ideal para el uso diario de Nexora OS con fluidez y compositor Wayland a máxima resolución.'
+                : compat.tier === 'minimum'
+                ? 'Tu equipo cumple los requisitos mínimos. Se recomienda ajustar el desenfoque en Ajustes KWin a 8px o 12px.'
+                : 'Tu equipo no cumple los requisitos mínimos. Se recomienda contar con al menos 2 GB de RAM y procesador de 64-bit.'}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Download Modal / Burn Guide */}
-      {downloadModalEdition && (
+      {/* Download Modal / USB Burning Guide */}
+      {downloadModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
           <div className="relative w-full max-w-xl rounded-3xl bg-[#0B192E] border-2 border-[#38BDF8]/60 p-6 sm:p-8 shadow-[0_0_50px_rgba(56,189,248,0.4)]">
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#38BDF8]/20">
@@ -355,13 +268,13 @@ export const DownloadsSection: React.FC = () => {
                 <Download className="w-6 h-6 text-[#38BDF8]" />
                 <div>
                   <h3 className="text-xl font-bold text-[#F8FAFC]">
-                    Descargando {downloadModalEdition === 'client' ? 'Nexora OS Client Edition' : 'Nexora OS Server Edition'}
+                    Descargando Nexora OS 26.04 LTS
                   </h3>
-                  <p className="text-xs text-[#38BDF8] font-mono">v26.04 LTS (Kubuntu Core)</p>
+                  <p className="text-xs text-[#38BDF8] font-mono">ISO Oficial (4.2 GB • Kubuntu Core)</p>
                 </div>
               </div>
               <button
-                onClick={() => setDownloadModalEdition(null)}
+                onClick={() => setDownloadModalOpen(false)}
                 className="p-1 rounded-lg text-[#94A3B8] hover:text-white hover:bg-[#112240] cursor-pointer"
               >
                 ✕
@@ -370,29 +283,30 @@ export const DownloadsSection: React.FC = () => {
 
             <div className="space-y-4 text-xs text-[#CBD5E1]">
               <p>
-                Tu descarga simulada de la imagen ISO comenzará de inmediato a través del espejo de alta velocidad.
+                Tu descarga directa de la imagen ISO comenzará a través del servidor espejo CDN de alta velocidad.
               </p>
 
               <div className="p-3 rounded-xl bg-[#050811] border border-[#38BDF8]/30 font-mono">
                 <div className="text-[#94A3B8] text-[10px]">Enlace Directo CDN:</div>
                 <div className="text-[#38BDF8] text-xs truncate">
-                  https://releases.nexora.os/26.04/{downloadModalEdition === 'client' ? 'nexora-26.04-desktop-amd64.iso' : 'nexora-26.04-server-amd64.iso'}
+                  https://releases.nexora.os/26.04/nexora-26.04-official-desktop-amd64.iso
                 </div>
               </div>
 
-              <div className="font-semibold text-[#F8FAFC] pt-2">
-                Instrucciones para crear tu USB booteable:
+              <div className="font-semibold text-[#F8FAFC] pt-2 flex items-center gap-2">
+                <Usb className="w-4 h-4 text-[#38BDF8]" />
+                <span>Instrucciones para crear tu USB booteable:</span>
               </div>
               <ol className="list-decimal list-inside space-y-1.5 text-[#94A3B8]">
                 <li>Descarga una herramienta de grabación como <span className="text-[#38BDF8]">BalenaEtcher</span> o <span className="text-[#38BDF8]">Rufus</span>.</li>
                 <li>Inserta un pendrive USB de al menos 8 GB.</li>
                 <li>Selecciona el archivo ISO de Nexora OS y pulsa "Flash / Escribir".</li>
-                <li>Reinicia tu ordenador y arranca desde el USB (F12 / F11 / Del).</li>
+                <li>Reinicia tu ordenador y arranca desde el USB (teclas F12 / F11 / Del según tu placa).</li>
               </ol>
 
               <div className="pt-4 flex items-center justify-end gap-3">
                 <button
-                  onClick={() => setDownloadModalEdition(null)}
+                  onClick={() => setDownloadModalOpen(false)}
                   className="px-5 py-2.5 rounded-xl bg-[#38BDF8] hover:bg-[#0EA5E9] text-[#050811] font-bold text-xs shadow-[0_0_15px_rgba(56,189,248,0.5)] cursor-pointer"
                 >
                   Entendido, cerrar

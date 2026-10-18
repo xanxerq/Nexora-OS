@@ -7,15 +7,13 @@ export interface HardwareSpecs {
 }
 
 export interface CompatibilityResult {
-  edition: 'client' | 'server';
   canRun: boolean;
   tier: 'insufficient' | 'minimum' | 'recommended' | 'optimal';
   missingRequirements: string[];
 }
 
 export function checkHardwareCompatibility(
-  specs: HardwareSpecs,
-  edition: 'client' | 'server'
+  specs: HardwareSpecs
 ): CompatibilityResult {
   const missingRequirements: string[] = [];
 
@@ -23,52 +21,27 @@ export function checkHardwareCompatibility(
     missingRequirements.push('Se requiere procesador x86_64 de 64-bit.');
   }
 
-  if (edition === 'client') {
-    if (specs.ramGb < 2) {
-      missingRequirements.push('Mínimo 2 GB de memoria RAM (recomendado 8 GB).');
-    }
-    if (specs.cpuCores < 2) {
-      missingRequirements.push('Mínimo procesador Dual-Core 2.0 GHz.');
-    }
-    if (specs.diskGb < 20) {
-      missingRequirements.push('Mínimo 20 GB de espacio libre en almacenamiento.');
-    }
-
-    if (missingRequirements.length > 0) {
-      return { edition, canRun: false, tier: 'insufficient', missingRequirements };
-    }
-
-    if (specs.ramGb >= 16 && specs.cpuCores >= 6 && specs.diskGb >= 100) {
-      return { edition, canRun: true, tier: 'optimal', missingRequirements: [] };
-    }
-    if (specs.ramGb >= 8 && specs.cpuCores >= 4 && specs.diskGb >= 50) {
-      return { edition, canRun: true, tier: 'recommended', missingRequirements: [] };
-    }
-    return { edition, canRun: true, tier: 'minimum', missingRequirements: [] };
-  } else {
-    // Server edition
-    if (specs.ramGb < 1) {
-      missingRequirements.push('Mínimo 1 GB de memoria RAM (recomendado 4 GB).');
-    }
-    if (specs.cpuCores < 1) {
-      missingRequirements.push('Mínimo 1 núcleo de procesador.');
-    }
-    if (specs.diskGb < 10) {
-      missingRequirements.push('Mínimo 10 GB de espacio en disco.');
-    }
-
-    if (missingRequirements.length > 0) {
-      return { edition, canRun: false, tier: 'insufficient', missingRequirements };
-    }
-
-    if (specs.ramGb >= 8 && specs.cpuCores >= 4 && specs.diskGb >= 80) {
-      return { edition, canRun: true, tier: 'optimal', missingRequirements: [] };
-    }
-    if (specs.ramGb >= 4 && specs.cpuCores >= 2 && specs.diskGb >= 40) {
-      return { edition, canRun: true, tier: 'recommended', missingRequirements: [] };
-    }
-    return { edition, canRun: true, tier: 'minimum', missingRequirements: [] };
+  if (specs.ramGb < 2) {
+    missingRequirements.push('Mínimo 2 GB de memoria RAM (recomendado 8 GB).');
   }
+  if (specs.cpuCores < 2) {
+    missingRequirements.push('Mínimo procesador Dual-Core 2.0 GHz.');
+  }
+  if (specs.diskGb < 20) {
+    missingRequirements.push('Mínimo 20 GB de espacio libre en almacenamiento.');
+  }
+
+  if (missingRequirements.length > 0) {
+    return { canRun: false, tier: 'insufficient', missingRequirements };
+  }
+
+  if (specs.ramGb >= 16 && specs.cpuCores >= 6 && specs.diskGb >= 100) {
+    return { canRun: true, tier: 'optimal', missingRequirements: [] };
+  }
+  if (specs.ramGb >= 8 && specs.cpuCores >= 4 && specs.diskGb >= 50) {
+    return { canRun: true, tier: 'recommended', missingRequirements: [] };
+  }
+  return { canRun: true, tier: 'minimum', missingRequirements: [] };
 }
 
 export interface SetupOptions {

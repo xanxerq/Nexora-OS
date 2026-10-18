@@ -31,7 +31,7 @@ export default function App() {
     }
   };
 
-  const handleSelectEdition = (edition: 'client' | 'server') => {
+  const handleDownloadNow = () => {
     scrollToSection('descargas');
   };
 
@@ -74,7 +74,7 @@ export default function App() {
       <main className="flex-1">
         {/* Hero Section */}
         <HeroSection
-          onSelectEdition={handleSelectEdition}
+          onDownloadNow={handleDownloadNow}
           onExploreDesktop={handleExploreDesktop}
         />
 
