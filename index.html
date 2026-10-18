@@ -1,22 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXORA OS | KDE Plasma 6 • Arquitectura Crystalline</title>
-    <meta name="description" content="Sitio oficial de Nexora OS: sistema operativo basado en Kubuntu 26.04 con KDE Plasma 6, arquitectura cristalina y Testify AI integrado creado por Xanxer." />
+    <meta name="description" content="Sitio oficial de Nexora OS: sistema operativo basado en Kubuntu con KDE Plasma 6, arquitectura cristalina y Testify AI integrado creado por Xanxer.">
     
-    <meta property="og:title" content="NEXORA OS | KDE Plasma 6 • Arquitectura Crystalline" />
-    <meta property="og:description" content="Sistema operativo basado en Kubuntu 26.04 con KDE Plasma 6, arquitectura cristalina y Testify AI integrado creado por Xanxer." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#050811] text-[#F8FAFC] antialiased selection:bg-[#38BDF8]/30 selection:text-[#38BDF8] overflow-x-hidden font-sans">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050811; color: #F8FAFC; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .glow-text {
+            background: linear-gradient(135deg, #F8FAFC 0%, #38BDF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#050811] text-[#F8FAFC] min-h-screen flex flex-col justify-between selection:bg-[#38BDF8]/30 selection:text-[#38BDF8]">
+    <!-- Background Glow -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-[#38BDF8]/10 rounded-full blur-[120px]"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-[#1D4ED8]/10 rounded-full blur-[140px]"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="relative z-10 flex-grow flex flex-col items-center justify-center px-4 py-12 max-w-5xl mx-auto text-center">
+        <!-- Logo SVG -->
+        <div class="mb-8 transform hover:scale-105 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="130" height="130" style="margin: 0 auto; display: block; filter: drop-shadow(0 0 25px rgba(56,189,248,0.3));">
+              <defs><linearGradient id="cB" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#0284C7"/></linearGradient><linearGradient id="sM" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient><linearGradient id="iD" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1E40AF"/><stop offset="100%" stop-color="#1E1B4B"/></linearGradient><linearGradient id="dF" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#312E81"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs>
+              <g stroke="#7DD3FC" stroke-width="2" stroke-linejoin="round" stroke-opacity="0.45"><polygon points="110,175 185,130 155,210" fill="url(#iD)"/><polygon points="110,175 155,210 110,275" fill="url(#sM)"/><polygon points="155,210 185,235 110,275" fill="url(#iD)"/><polygon points="110,275 185,235 150,320" fill="url(#dF)"/><polygon points="110,275 150,320 110,365" fill="url(#iD)"/><polygon points="150,320 195,310 165,345" fill="url(#cB)"/><polygon points="150,320 165,345 110,365" fill="url(#sM)"/><polygon points="110,365 165,345 195,420" fill="url(#dF)"/><polygon points="165,345 195,340 195,420" fill="url(#iD)"/><polygon points="185,130 245,195 155,210" fill="url(#cB)"/><polygon points="155,210 245,195 225,260" fill="url(#sM)"/><polygon points="155,210 225,260 185,235" fill="url(#iD)"/><polygon points="245,195 295,255 225,260" fill="url(#cB)"/><polygon points="225,260 295,255 275,320" fill="url(#sM)"/><polygon points="185,235 225,260 275,320" fill="url(#iD)"/><polygon points="275,320 295,255 340,340" fill="url(#sM)"/><polygon points="275,320 340,340 325,405" fill="url(#iD)"/><polygon points="285,85 395,155 335,165" fill="url(#cB)"/><polygon points="285,85 335,165 285,185" fill="url(#sM)"/><polygon points="335,165 395,155 395,245" fx="" fill="url(#iD)"/><polygon points="285,185 335,165 345,230" fill="url(#cB)"/><polygon points="335,165 395,245 345,230" fill="url(#sM)"/><polygon points="285,185 345,230 295,255" fill="url(#iD)"/><polygon points="295,255 345,230 340,340" fill="url(#dF)"/><polygon points="345,230 395,245 395,355" fill="url(#iD)"/><polygon points="345,230 395,355 340,340" fill="url(#dF)"/><polygon points="340,340 395,355 325,405" fill="url(#sM)"/></g>
+              <path d="M110,175 L185,130 L285,243 L285,85 L395,155 L395,355 L325,405 L185,235 L185,312 L195,310 L195,420 L110,365 Z" fill="none" stroke="#E0F2FE" stroke-width="3.5" stroke-linejoin="round" stroke-opacity="0.85"/>
+            </svg>
+        </div>
+
+        <!-- Glass Card -->
+        <div class="glass rounded-3xl p-8 md:p-12 w-full max-w-3xl shadow-2xl relative overflow-hidden">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-wider glow-text mb-4">NEXORA OS</h1>
+            <p class="text-lg md:text-xl text-[#94A3B8] font-medium mb-8">
+                KDE Plasma 6 • Arquitectura Crystalline • Testify AI Integrado
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#descargar" class="w-full sm:w-auto px-8 py-4 bg-[#38BDF8] text-[#050811] font-bold rounded-xl shadow-[0_0_30px_rgba(56,189,248,0.4)] hover:bg-[#7DD3FC] hover:scale-105 transition-all duration-300">
+                    Descargar Nexora OS
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-6 text-center text-xs text-[#475569] font-mono tracking-widest border-t border-[#1E293B]/50">
+        SYSTEM CORE BY XANXER © 2026
+    </footer>
+</body>
 </html>
