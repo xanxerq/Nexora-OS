@@ -11,11 +11,23 @@ import {
   ChevronRight,
   Code,
   Sparkles,
-  Wand2
+  Wand2,
+  Edit3
 } from 'lucide-react';
 import { generateSetupCommand, SetupOptions } from '../utils/nexoraUtils';
+import { NexoraPageContent } from '../utils/contentStore';
 
-export const SetupGuideSection: React.FC = () => {
+interface SetupGuideSectionProps {
+  content?: NexoraPageContent;
+  isEditMode?: boolean;
+  onUpdateContent?: (partial: Partial<NexoraPageContent>) => void;
+}
+
+export const SetupGuideSection: React.FC<SetupGuideSectionProps> = ({
+  content,
+  isEditMode = false,
+  onUpdateContent,
+}) => {
   const [copiedStep, setCopiedStep] = useState<number | null>(null);
   const [copiedFullScript, setCopiedFullScript] = useState(false);
 
@@ -117,14 +129,32 @@ chmod +x ~/Desktop/*.desktop`,
       <div className="text-center max-w-3xl mx-auto mb-14">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#38BDF8]/10 border border-[#38BDF8]/30 text-xs font-mono text-[#38BDF8] mb-3">
           <Sliders className="w-3.5 h-3.5" />
-          <span>GUÍA DE PERSONALIZACIÓN OFICIAL</span>
+          <span>INSTRUCCIONES POST INSTALACIÓN</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
-          Cómo Configurar Kubuntu 26.04 para que <span className="bg-gradient-to-r from-white via-[#E0F2FE] to-[#38BDF8] bg-clip-text text-transparent">se vea como en la foto</span>
+          Instrucciones Post Instalación: <span className="bg-gradient-to-r from-white via-[#E0F2FE] to-[#38BDF8] bg-clip-text text-transparent">Configuración como en la foto</span>
         </h2>
-        <p className="mt-3 text-[#94A3B8] text-base">
-          Sigue estos pasos precisos para replicar exactamente el escritorio oficial de Nexora OS: panel flotante, wallpaper facetado, desenfoque de 16px y firma de autor.
-        </p>
+        
+        {/* Editable post-install note */}
+        <div className="mt-3">
+          {isEditMode && onUpdateContent && content ? (
+            <div className="p-2 rounded-xl bg-[#0B192E] border border-[#38BDF8]/40">
+              <span className="text-[10px] font-mono text-[#38BDF8] flex items-center justify-center gap-1 mb-1">
+                <Edit3 className="w-3 h-3" /> Editar Nota de Instrucciones Post Instalación:
+              </span>
+              <textarea
+                value={content.postInstallNote}
+                onChange={(e) => onUpdateContent({ postInstallNote: e.target.value })}
+                rows={2}
+                className="w-full text-center text-xs bg-[#050811] text-[#CBD5E1] p-2 rounded border border-[#38BDF8]/30 outline-none"
+              />
+            </div>
+          ) : (
+            <p className="text-[#94A3B8] text-base">
+              {content ? content.postInstallNote : 'Sigue estos pasos precisos para replicar exactamente el escritorio oficial de Nexora OS: panel flotante, wallpaper facetado, desenfoque de 16px y firma de autor.'}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Quick Setup Automation Banner */}

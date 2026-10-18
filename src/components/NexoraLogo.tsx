@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 interface NexoraLogoProps {
   className?: string;
@@ -9,10 +9,17 @@ interface NexoraLogoProps {
 
 export const NexoraLogo: React.FC<NexoraLogoProps> = ({
   className = '',
-  size = 120,
+  size = 110,
   glow = true,
   interactive = true,
 }) => {
+  const uid = useId().replace(/:/g, '');
+
+  const idCb = `cB_${uid}`;
+  const idSm = `sM_${uid}`;
+  const idId = `iD_${uid}`;
+  const idDf = `dF_${uid}`;
+
   return (
     <div
       className={`relative inline-flex items-center justify-center select-none ${
@@ -27,194 +34,69 @@ export const NexoraLogo: React.FC<NexoraLogoProps> = ({
         />
       )}
 
-      {/* SVG rendering of the faceted crystalline N logo from gemini-svg.svg & image.png */}
+      {/* Exact official SVG code provided by user */}
       <svg
-        viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
         width={size}
         height={size}
         className="relative z-10 drop-shadow-[0_0_20px_rgba(56,189,248,0.45)]"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Subtle cyan glow filter */}
-          <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#38BDF8" floodOpacity="0.8" />
-          </filter>
-
-          <filter id="outerGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-
-          {/* Facet Gradients */}
-          <linearGradient id="facetDeep1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0B1B3D" />
-            <stop offset="100%" stopColor="#172554" />
-          </linearGradient>
-
-          <linearGradient id="facetMidBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1D4ED8" />
-            <stop offset="100%" stopColor="#0284C7" />
-          </linearGradient>
-
-          <linearGradient id="facetBrightCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={idCb} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#38BDF8" />
-            <stop offset="100%" stopColor="#0EA5E9" />
-          </linearGradient>
-
-          <linearGradient id="facetDarkNavy" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0F172A" />
-            <stop offset="100%" stopColor="#1E293B" />
-          </linearGradient>
-
-          <linearGradient id="facetIcySpire" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7DD3FC" />
             <stop offset="100%" stopColor="#0284C7" />
           </linearGradient>
-
-          <linearGradient id="facetVioletEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1E1B4B" />
-            <stop offset="100%" stopColor="#2563EB" />
+          <linearGradient id={idSm} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00B4D8" />
+            <stop offset="100%" stopColor="#1D4ED8" />
+          </linearGradient>
+          <linearGradient id={idId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#1E40AF" />
+            <stop offset="100%" stopColor="#1E1B4B" />
+          </linearGradient>
+          <linearGradient id={idDf} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#312E81" />
+            <stop offset="100%" stopColor="#0F172A" />
           </linearGradient>
         </defs>
-
-        {/* Crystalline Facets of the Letter 'N' */}
-        {/* Left Vertical Pillar Facets */}
-        <polygon
-          points="46,78 72,54 84,78"
-          fill="url(#facetMidBlue)"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-          className="transition-colors duration-300 hover:brightness-125"
-        />
-        <polygon
-          points="46,78 84,78 70,102"
-          fill="#0284C7"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="46,78 46,128 70,102"
-          fill="url(#facetBrightCyan)"
-          stroke="#7DD3FC"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="46,128 58,154 70,102"
-          fill="#0369A1"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="58,154 84,142 70,102"
-          fill="url(#facetDarkNavy)"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-
-        {/* Diagonal Stroke Facets */}
-        <polygon
-          points="70,102 84,78 106,102"
-          fill="url(#facetMidBlue)"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="70,102 106,102 84,142"
-          fill="#1E40AF"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="84,142 106,102 124,134"
-          fill="url(#facetDeep1)"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="84,142 80,166 102,156"
-          fill="#0C4A6E"
-          stroke="#7DD3FC"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="84,142 102,156 124,134"
-          fill="url(#facetVioletEdge)"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-
-        {/* Right Vertical Spire Facets */}
-        <polygon
-          points="114,36 126,58 148,68"
-          fill="url(#facetIcySpire)"
-          stroke="#BAE6FD"
-          strokeWidth="0.9"
-        />
-        <polygon
-          points="114,36 148,68 158,84"
-          fill="#0EA5E9"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="126,58 106,102 124,134"
-          fill="url(#facetBrightCyan)"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="126,58 148,68 124,134"
-          fill="#1D4ED8"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="148,68 158,84 146,128"
-          fill="url(#facetDeep1)"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="148,68 124,134 146,128"
-          fill="#1E3A8A"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="124,134 134,162 146,128"
-          fill="url(#facetBrightCyan)"
-          stroke="#7DD3FC"
-          strokeWidth="0.8"
-        />
-        <polygon
-          points="124,134 102,156 134,162"
-          fill="#0369A1"
-          stroke="#38BDF8"
-          strokeWidth="0.8"
-        />
-
-        {/* Outer Perimeter Highlight Glow Line */}
-        <polygon
-          points="72,54 46,78 46,128 58,154 80,166 102,156 134,162 146,128 158,84 148,68 114,36 126,58 106,102 84,78"
+        <g stroke="#7DD3FC" strokeWidth="2" strokeLinejoin="round" strokeOpacity="0.45">
+          <polygon points="110,175 185,130 155,210" fill={`url(#${idId})`} />
+          <polygon points="110,175 155,210 110,275" fill={`url(#${idSm})`} />
+          <polygon points="155,210 185,235 110,275" fill={`url(#${idId})`} />
+          <polygon points="110,275 185,235 150,320" fill={`url(#${idDf})`} />
+          <polygon points="110,275 150,320 110,365" fill={`url(#${idId})`} />
+          <polygon points="150,320 195,310 165,345" fill={`url(#${idCb})`} />
+          <polygon points="150,320 165,345 110,365" fill={`url(#${idSm})`} />
+          <polygon points="110,365 165,345 195,420" fill={`url(#${idDf})`} />
+          <polygon points="165,345 195,340 195,420" fill={`url(#${idId})`} />
+          <polygon points="185,130 245,195 155,210" fill={`url(#${idCb})`} />
+          <polygon points="155,210 245,195 225,260" fill={`url(#${idSm})`} />
+          <polygon points="155,210 225,260 185,235" fill={`url(#${idId})`} />
+          <polygon points="245,195 295,255 225,260" fill={`url(#${idCb})`} />
+          <polygon points="225,260 295,255 275,320" fill={`url(#${idSm})`} />
+          <polygon points="185,235 225,260 275,320" fill={`url(#${idId})`} />
+          <polygon points="275,320 295,255 340,340" fill={`url(#${idSm})`} />
+          <polygon points="275,320 340,340 325,405" fill={`url(#${idId})`} />
+          <polygon points="285,85 395,155 335,165" fill={`url(#${idCb})`} />
+          <polygon points="285,85 335,165 285,185" fill={`url(#${idSm})`} />
+          <polygon points="335,165 395,155 395,245" fill={`url(#${idId})`} />
+          <polygon points="285,185 335,165 345,230" fill={`url(#${idCb})`} />
+          <polygon points="335,165 395,245 345,230" fill={`url(#${idSm})`} />
+          <polygon points="285,185 345,230 295,255" fill={`url(#${idId})`} />
+          <polygon points="295,255 345,230 340,340" fill={`url(#${idDf})`} />
+          <polygon points="345,230 395,245 395,355" fill={`url(#${idId})`} />
+          <polygon points="345,230 395,355 340,340" fill={`url(#${idDf})`} />
+          <polygon points="340,340 395,355 325,405" fill={`url(#${idSm})`} />
+        </g>
+        <path
+          d="M110,175 L185,130 L285,243 L285,85 L395,155 L395,355 L325,405 L185,235 L185,312 L195,310 L195,420 L110,365 Z"
           fill="none"
-          stroke="#38BDF8"
-          strokeWidth="1.6"
+          stroke="#E0F2FE"
+          strokeWidth="3.5"
           strokeLinejoin="round"
-          filter="url(#outerGlow)"
+          strokeOpacity="0.85"
         />
-
-        {/* Inner wireframe light nodes */}
-        <circle cx="114" cy="36" r="2.2" fill="#E0F2FE" />
-        <circle cx="72" cy="54" r="1.8" fill="#E0F2FE" />
-        <circle cx="46" cy="78" r="1.8" fill="#38BDF8" />
-        <circle cx="58" cy="154" r="1.8" fill="#38BDF8" />
-        <circle cx="80" cy="166" r="1.8" fill="#38BDF8" />
-        <circle cx="134" cy="162" r="2" fill="#7DD3FC" />
-        <circle cx="158" cy="84" r="1.8" fill="#7DD3FC" />
-        <circle cx="106" cy="102" r="2.2" fill="#E0F2FE" />
-        <circle cx="70" cy="102" r="1.8" fill="#BAE6FD" />
       </svg>
     </div>
   );

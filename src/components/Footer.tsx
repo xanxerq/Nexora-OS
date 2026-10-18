@@ -1,12 +1,14 @@
 import React from 'react';
 import { NexoraLogo } from './NexoraLogo';
-import { ArrowUp, Github, Shield, Terminal } from 'lucide-react';
+import { ArrowUp, Lock, Edit3 } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
+  onOpenLogin: () => void;
+  isEditMode: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenLogin, isEditMode }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -31,49 +33,58 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Quick links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-[#CBD5E1]">
+          {/* Quick links with the 4 exact requested button names */}
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#CBD5E1]">
             <button
-              onClick={() => onNavigate('hero')}
+              onClick={() => onNavigate('informacion')}
               className="hover:text-[#38BDF8] transition-colors cursor-pointer"
             >
-              Inicio
+              Acerca del Sistema
             </button>
             <button
               onClick={() => onNavigate('descargas')}
               className="hover:text-[#38BDF8] transition-colors cursor-pointer"
             >
-              Descargas
-            </button>
-            <button
-              onClick={() => onNavigate('informacion')}
-              className="hover:text-[#38BDF8] transition-colors cursor-pointer"
-            >
-              Información
+              Sección de Descargas
             </button>
             <button
               onClick={() => onNavigate('configuracion')}
               className="hover:text-[#38BDF8] transition-colors cursor-pointer"
             >
-              Cómo configurarlo
+              Instrucciones Post Instalación
             </button>
             <button
               onClick={() => onNavigate('creador')}
               className="hover:text-[#38BDF8] transition-colors cursor-pointer"
             >
-              Sobre el Creador
+              Acerca del Creador
             </button>
           </div>
 
-          {/* Back to top button */}
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#112240]/60 hover:bg-[#38BDF8]/20 border border-[#38BDF8]/30 text-[#38BDF8] transition-all cursor-pointer"
-            aria-label="Volver arriba"
-          >
-            <span>Subir</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
+          {/* Back to top & Edit Mode */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onOpenLogin}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-mono transition-all cursor-pointer ${
+                isEditMode
+                  ? 'bg-[#38BDF8]/20 border-[#38BDF8] text-[#38BDF8]'
+                  : 'bg-[#112240]/40 border-[#38BDF8]/20 hover:border-[#38BDF8]/40 text-[#64748B] hover:text-[#38BDF8]'
+              }`}
+              title="Acceso Xanxer (Modo Edición)"
+            >
+              <Lock className="w-3 h-3" />
+              <span>{isEditMode ? 'Xanxer Activo' : 'Acceso Xanxer'}</span>
+            </button>
+
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#112240]/60 hover:bg-[#38BDF8]/20 border border-[#38BDF8]/30 text-[#38BDF8] transition-all cursor-pointer"
+              aria-label="Volver arriba"
+            >
+              <span>Subir</span>
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
         {/* User Required Text: 'SYSTEM CORE BY XANXER © 2026' */}

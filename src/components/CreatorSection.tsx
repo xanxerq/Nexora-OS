@@ -1,8 +1,19 @@
 import React from 'react';
 import { NexoraLogo } from './NexoraLogo';
-import { User, Code2, Heart, Award, Sparkles, Github, Terminal, ShieldCheck, Mail, MessageSquare } from 'lucide-react';
+import { User, Award, Sparkles, Github, Terminal, Mail, Edit3 } from 'lucide-react';
+import { NexoraPageContent } from '../utils/contentStore';
 
-export const CreatorSection: React.FC = () => {
+interface CreatorSectionProps {
+  content?: NexoraPageContent;
+  isEditMode?: boolean;
+  onUpdateContent?: (partial: Partial<NexoraPageContent>) => void;
+}
+
+export const CreatorSection: React.FC<CreatorSectionProps> = ({
+  content,
+  isEditMode = false,
+  onUpdateContent,
+}) => {
   return (
     <section id="creador" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Ambient background glow */}
@@ -15,7 +26,7 @@ export const CreatorSection: React.FC = () => {
           <span>AUTORÍA Y DIRECCIÓN DEL PROYECTO</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
-          Sobre el Creador: <span className="bg-gradient-to-r from-white via-[#E0F2FE] to-[#38BDF8] bg-clip-text text-transparent">Xanxer</span>
+          Acerca del Creador: <span className="bg-gradient-to-r from-white via-[#E0F2FE] to-[#38BDF8] bg-clip-text text-transparent">Xanxer</span>
         </h2>
         <p className="mt-3 text-[#94A3B8] text-base">
           La mente detrás del diseño de la Arquitectura Crystalline y la compilación personalizada de Nexora OS.
@@ -83,9 +94,23 @@ export const CreatorSection: React.FC = () => {
               <span>La Visión Detrás de Nexora OS</span>
             </h4>
             
-            <p>
-              "Durante años utilicé diferentes distribuciones Linux, pero siempre encontraba el mismo dilema: las distribuciones estables eran visualmente genéricas y aburridas, mientras que las personalizaciones comunitarias requerían horas de retoque y solían romperse tras cada actualización."
-            </p>
+            {isEditMode && onUpdateContent && content ? (
+              <div className="p-3 rounded-xl bg-[#050811] border border-[#38BDF8]/40">
+                <span className="text-[10px] font-mono text-[#38BDF8] flex items-center gap-1 mb-1">
+                  <Edit3 className="w-3 h-3" /> Editar Biografía y Mensaje de Xanxer:
+                </span>
+                <textarea
+                  value={content.creatorBioText}
+                  onChange={(e) => onUpdateContent({ creatorBioText: e.target.value })}
+                  rows={4}
+                  className="w-full text-xs bg-[#112240] text-[#CBD5E1] p-2.5 rounded border border-[#38BDF8]/30 outline-none"
+                />
+              </div>
+            ) : (
+              <p>
+                {content ? content.creatorBioText : '"Durante años utilicé diferentes distribuciones Linux, pero siempre encontraba el mismo dilema: las distribuciones estables eran visualmente genéricas y aburridas, mientras que las personalizaciones comunitarias requerían horas de retoque y solían romperse tras cada actualización."'}
+              </p>
+            )}
 
             <p>
               "Con <strong className="text-[#38BDF8]">Nexora OS</strong>, me propuse fusionar tres pilares que rara vez conviven juntos:

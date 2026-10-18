@@ -4,17 +4,23 @@ import {
   Sparkles,
   Shield,
   Cpu,
-  Zap,
-  Terminal,
-  Eye,
-  Settings,
-  HardDrive,
-  Lock,
   Workflow,
-  Check
+  Check,
+  Edit3
 } from 'lucide-react';
+import { NexoraPageContent } from '../utils/contentStore';
 
-export const FeaturesSection: React.FC = () => {
+interface FeaturesSectionProps {
+  content?: NexoraPageContent;
+  isEditMode?: boolean;
+  onUpdateContent?: (partial: Partial<NexoraPageContent>) => void;
+}
+
+export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
+  content,
+  isEditMode = false,
+  onUpdateContent,
+}) => {
   const [activeFeatureTab, setActiveFeatureTab] = useState<'all' | 'plasma' | 'testify' | 'kernel'>('all');
 
   const technicalPillars = [
@@ -90,14 +96,32 @@ export const FeaturesSection: React.FC = () => {
       <div className="text-center max-w-3xl mx-auto mb-14">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#38BDF8]/10 border border-[#38BDF8]/30 text-xs font-mono text-[#38BDF8] mb-3">
           <Workflow className="w-3.5 h-3.5" />
-          <span>ARQUITECTURA Y ESPECIFICACIONES TÉCNICAS</span>
+          <span>ACERCA DEL SISTEMA & ESPECIFICACIONES TÉCNICAS</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
           Ingeniería de <span className="bg-gradient-to-r from-white via-[#E0F2FE] to-[#38BDF8] bg-clip-text text-transparent">NEXORA OS</span>
         </h2>
-        <p className="mt-3 text-[#94A3B8] text-base">
-          Conoce en profundidad los cimientos técnicos que hacen de Nexora un sistema operativo rápido, visualmente imponente y respetuoso de tu privacidad.
-        </p>
+        
+        {/* Editable Intro Text */}
+        <div className="mt-3">
+          {isEditMode && onUpdateContent && content ? (
+            <div className="p-2 rounded-xl bg-[#0B192E] border border-[#38BDF8]/40">
+              <span className="text-[10px] font-mono text-[#38BDF8] flex items-center justify-center gap-1 mb-1">
+                <Edit3 className="w-3 h-3" /> Editar Texto 'Acerca del Sistema':
+              </span>
+              <textarea
+                value={content.systemAboutText}
+                onChange={(e) => onUpdateContent({ systemAboutText: e.target.value })}
+                rows={2}
+                className="w-full text-center text-xs bg-[#050811] text-[#CBD5E1] p-2 rounded border border-[#38BDF8]/30 outline-none"
+              />
+            </div>
+          ) : (
+            <p className="text-[#94A3B8] text-base">
+              {content ? content.systemAboutText : 'Conoce en profundidad los cimientos técnicos que hacen de Nexora un sistema operativo rápido, visualmente imponente y respetuoso de tu privacidad.'}
+            </p>
+          )}
+        </div>
 
         {/* Filter Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
