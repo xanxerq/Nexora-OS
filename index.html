@@ -31,14 +31,12 @@
         <div class="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-[#1D4ED8]/10 rounded-full blur-[160px]"></div>
     </div>
 
-    <!-- Header / Top Bar (Estilo Lliurex institucional) -->
+    <!-- Header / Top Bar (Sin GVA / Nexora Core, limpio) -->
     <header class="relative z-20 bg-[#070B14]/90 border-b border-[#1E293B] sticky top-0 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <button onclick="switchTab('inicio')" class="flex items-center gap-2 cursor-pointer group text-left">
-                    <div class="bg-[#38BDF8]/10 border border-[#38BDF8]/30 px-3 py-1.5 rounded-lg text-xs font-mono tracking-widest text-[#38BDF8] group-hover:bg-[#38BDF8]/20 transition-all">
-                        GVA / NEXORA CORE
-                    </div>
+                    <span class="text-lg font-black tracking-wider glow-text">NEXORA OS</span>
                 </button>
             </div>
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-[#94A3B8]">
@@ -48,14 +46,12 @@
                 <button onclick="switchTab('creador')" id="nav-creador" class="hover:text-[#38BDF8] transition-colors uppercase">Creador</button>
             </nav>
             <div>
-                <button onclick="openAdminModal()" class="px-4 py-2 bg-[#1E293B] border border-[#38BDF8]/40 text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#050811] rounded-xl text-xs font-bold transition-all shadow-[0_0_15px_rgba(56,189,248,0.2)]">
-                    🛠️ Modo Edición
-                </button>
+                <!-- Ya no hay modo edición con contraseña, textos estáticos puros y escritos por ti -->
             </div>
         </div>
     </header>
 
-    <!-- Contenedor de Secciones Exclusivas (Solo se muestra una a la vez) -->
+    <!-- Contenedor de Secciones Exclusivas (Textos exactos del creador) -->
     <main class="relative z-10 flex-grow max-w-7xl mx-auto px-6 py-12 w-full flex items-center justify-center">
 
         <!-- 1. VISTA INICIO -->
@@ -66,11 +62,11 @@
                         KDE Plasma 6 • Kubuntu 26.04
                     </span>
                 </div>
-                <h1 id="editable-title" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none glow-text">
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none glow-text">
                     Más que un <span class="text-[#38BDF8]">sistema</span>
                 </h1>
-                <p id="editable-subtitle" class="text-lg sm:text-xl text-[#94A3B8] font-normal leading-relaxed">
-                    Nexora OS es más que un escritorio Linux o sus apps; es un <strong class="text-[#F8FAFC]">proyecto educativo y tecnológico de arquitectura cristalina</strong> diseñado por Xanxer.
+                <p class="text-lg sm:text-xl text-[#94A3B8] font-normal leading-relaxed whitespace-pre-line">
+                    Nexora OS es más que un escritorio Linux o sus apps; es un proyecto profundizado para la educación y tecnológia además de estar optimizado para todo tipo de tareas como Juegos o Diseño 3D por Xanxer.
                 </p>
                 <div class="flex gap-4 pt-4">
                     <button onclick="switchTab('descargas')" class="px-8 py-4 bg-[#38BDF8] text-[#050811] font-bold rounded-xl shadow-[0_0_25px_rgba(56,189,248,0.4)] hover:bg-[#7DD3FC] transition-all">
@@ -98,13 +94,13 @@
             <div class="flex items-center gap-3">
                 <span class="text-4xl">📥</span>
                 <div>
-                    <h2 class="text-3xl font-extrabold text-[#38BDF8]">Centro de Descargas</h2>
-                    <p class="text-xs text-[#94A3B8]">Obtén la imagen ISO oficial lista para producción y Dual-Boot.</p>
+                    <h2 class="text-3xl font-extrabold text-[#38BDF8]">Descargas</h2>
+                    <p class="text-xs text-[#94A3B8]">Obtén la imagen ISO oficial.</p>
                 </div>
             </div>
             <div class="border-t border-[#1E293B] pt-6 space-y-4">
-                <p id="text-descargas" class="text-base text-[#94A3B8] leading-relaxed">
-                    Nexora OS 1.0 se distribuye en una ISO optimizada para arquitecturas x86_64. Diseñada para instalarse en una partición dedicada de 100 GB respetando la EFI de Windows.
+                <p class="text-base text-[#94A3B8] leading-relaxed whitespace-pre-line">
+                    Nexora OS 1.0 es una distribución de Linux para ordenador con CPU de x64 bits, basada en Kubuntu con el entorno de escritorio KDE Plasma 6 para tener un diseño moderno, actual y fluido y es perfecto para instalarlo como sistema principal y con Dual Boot
                 </p>
                 <div class="pt-4">
                     <a href="#" class="inline-flex items-center gap-3 px-8 py-4 bg-[#38BDF8] text-[#050811] font-bold rounded-2xl shadow-[0_0_30px_rgba(56,189,248,0.4)] hover:bg-[#7DD3FC] transition-all">
@@ -119,19 +115,18 @@
             <div class="flex items-center gap-3">
                 <span class="text-4xl">🛠️</span>
                 <div>
-                    <h2 class="text-3xl font-extrabold text-[#38BDF8]">Instrucciones de Post-Instalación</h2>
-                    <p class="text-xs text-[#94A3B8]">Configura el tema abisal, SDDM y el Splash Screen tras instalar en tu torre.</p>
+                    <h2 class="text-3xl font-extrabold text-[#38BDF8]">Post-Instalación</h2>
+                    <p class="text-xs text-[#94A3B8]">Configuración inicial y aplicación de personalización.</p>
                 </div>
             </div>
             <div class="border-t border-[#1E293B] pt-6 space-y-4">
-                <p id="text-postinstalacion" class="text-sm text-[#94A3B8] leading-relaxed">
-                    Ejecuta los siguientes comandos en la terminal de tu torre para aplicar el tema de inicio de sesión y la pantalla de bienvenida estilo Lliurex:
+                <p class="text-base text-[#94A3B8] leading-relaxed whitespace-pre-line">
+                    Como es la primera versión del sistema, al instalarse aun no esta personalizado del todo y se quedan residuos de Kubuntu asi que para que el sistema sea 100% Nexora OS tiene que descargar este ejecutable y ejecutarlo.
                 </p>
-                <div class="bg-[#050811] border border-[#334155] rounded-xl p-4 font-mono text-xs text-[#38BDF8] space-y-2 overflow-x-auto">
-                    <p># 1. Configurar SDDM Arquitectura Cristalina</p>
-                    <p class="text-[#F8FAFC]">sudo mkdir -p /etc/sddm.conf.d && echo -e "[Theme]\nCurrent=nexora-os" | sudo tee /etc/sddm.conf.d/99-nexora.conf</p>
-                    <p class="pt-2"># 2. Activar Nexora Splash Screen</p>
-                    <p class="text-[#F8FAFC]">kwriteconfig6 --file kscreenlockerrc --group Greeter --group Wallpaper --group Image --key general "file:///usr/share/wallpapers/Nexora/nexora-wallpaper.png"</p>
+                <div class="pt-4">
+                    <a href="#" class="inline-flex items-center gap-3 px-6 py-3 bg-[#38BDF8]/20 border border-[#38BDF8]/50 text-[#38BDF8] font-bold rounded-xl hover:bg-[#38BDF8]/30 transition-all">
+                        <span>📦</span> Descargar Ejecutable Post-Instalación (.sh)
+                    </a>
                 </div>
             </div>
         </div>
@@ -141,56 +136,26 @@
             <div class="flex items-center gap-3">
                 <span class="text-4xl">⚡</span>
                 <div>
-                    <h2 class="text-3xl font-extrabold text-[#38BDF8]">Acerca del Creador</h2>
-                    <p class="text-xs text-[#94A3B8]">Ingeniería, desarrollo y visión de un sistema operativo independiente.</p>
+                    <h2 class="text-3xl font-extrabold text-[#38BDF8]">Creador</h2>
+                    <p class="text-xs text-[#94A3B8]">La historia detrás de Nexora OS.</p>
                 </div>
             </div>
-            <div class="border-t border-[#1E293B] pt-6 space-y-4">
-                <p id="text-creador" class="text-base text-[#94A3B8] leading-relaxed">
-                    Nexora OS ha sido desarrollado íntegramente por <strong>Xanxer</strong> (Alexander), un apasionado de la administración de sistemas Linux, la personalización de entornos gráficos en KDE Plasma y la integración de herramientas de inteligencia artificial educativa como Testify AI.
+            <div class="border-t border-[#1E293B] pt-6 space-y-6">
+                <p class="text-base text-[#94A3B8] leading-relaxed whitespace-pre-line">
+                    Nexora OS ha sido desarrollado íntegramente por Xanxer (Alexander), un apasionado de la administración de sistemas Linux, la personalización de entornos gráficos en KDE Plasma y la integración de herramientas de inteligencia artificial educativa como Testify AI.
+
+                    Tiene solo 14 años y siempre le ha apasionado esto y es su mayor creación hacer esto para el ha sido difícil pero piensa que vale la pena ya que podrá decir que tiene su propia distribucion de linux y encima integrada con su aplicación Testify AI y todos los textos que tiene la pagina los ha escrito el letra a letra.
+
+                    Y la verdad ya escribo en primera persona por que este proyecto lo llevo haciendo desde hace poco pero la verdad que lo estoy disfrutando y aunque no sera igual de famoso que Ubuntu siempre estaré agradecido de poder haber hecho este proyecto y espero que conforme vaya haciendo actualizaciones esto se quede perfecto y sin ningún error.
+
+                    Si tienes alguna duda o quieres formar parte del proyecto Nexora OS puedes escribirme por Instagram @xanxeerr
+
+                    Gracias por descargar Nexora OS ❤️
                 </p>
             </div>
         </div>
 
     </main>
-
-    <!-- Admin Login Modal -->
-    <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="glass p-8 rounded-3xl max-w-md w-full border border-[#38BDF8]/40 shadow-2xl relative text-center">
-            <h3 class="text-xl font-bold text-[#38BDF8] mb-2">Acceso Modo Edición</h3>
-            <p class="text-xs text-[#94A3B8] mb-6">Introduce las credenciales de administrador para desbloquear la edición en vivo.</p>
-            
-            <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
-                <div>
-                    <label class="block text-xs font-semibold text-[#94A3B8] mb-1">USUARIO</label>
-                    <input type="text" id="admin-user" required class="w-full bg-[#050811] border border-[#334155] rounded-xl px-4 py-2.5 text-[#F8FAFC] focus:outline-none focus:border-[#38BDF8]">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-[#94A3B8] mb-1">CONTRASEÑA</label>
-                    <input type="password" id="admin-pass" required class="w-full bg-[#050811] border border-[#334155] rounded-xl px-4 py-2.5 text-[#F8FAFC] focus:outline-none focus:border-[#38BDF8]">
-                </div>
-                <div id="login-error" class="text-red-400 text-xs text-center hidden">Credenciales incorrectas.</div>
-                
-                <div class="flex gap-3 pt-2">
-                    <button type="button" onclick="closeAdminModal()" class="w-1/2 py-2.5 bg-transparent border border-[#334155] hover:bg-[#1E293B] rounded-xl font-semibold text-sm text-[#94A3B8]">Cancelar</button>
-                    <button type="submit" class="w-1/2 py-2.5 bg-[#38BDF8] hover:bg-[#7DD3FC] text-[#050811] rounded-xl font-bold text-sm shadow-[0_0_15px_rgba(56,189,248,0.4)]">Entrar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Edit Toolbar (Hidden by default) -->
-    <div id="edit-toolbar" class="fixed bottom-0 left-0 right-0 bg-[#070B14]/95 border-t border-[#38BDF8]/40 p-4 hidden z-40 backdrop-blur-md shadow-2xl">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></span>
-                <span class="text-xs font-bold text-[#38BDF8] uppercase tracking-wider">Modo Edición Activo (Xanxer) - Haz clic en cualquier texto para modificarlo</span>
-            </div>
-            <div class="flex items-center gap-3">
-                <button onclick="toggleEditMode()" class="px-5 py-2.5 bg-[#38BDF8] text-[#050811] text-xs font-bold rounded-xl hover:bg-[#7DD3FC] transition-all shadow-[0_0_15px_rgba(56,189,248,0.4)]">Guardar y Salir</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="relative z-10 py-8 text-center text-xs text-[#475569] font-mono tracking-widest border-t border-[#1E293B]">
@@ -216,61 +181,6 @@
 
         // Inicializar pestaña por defecto
         switchTab('inicio');
-
-        function openAdminModal() {
-            document.getElementById('admin-modal').classList.remove('hidden');
-        }
-
-        function closeAdminModal() {
-            document.getElementById('admin-modal').classList.add('hidden');
-            document.getElementById('admin-user').value = '';
-            document.getElementById('admin-pass').value = '';
-            document.getElementById('login-error').classList.add('hidden');
-        }
-
-        function handleAdminLogin(event) {
-            event.preventDefault();
-            const user = document.getElementById('admin-user').value;
-            const pass = document.getElementById('admin-pass').value;
-
-            if (user === 'xanxer' && pass === 'oV4rDm2m') {
-                closeAdminModal();
-                enableEditing();
-            } else {
-                document.getElementById('login-error').classList.add('hidden');
-            }
-        }
-
-        function enableEditing() {
-            document.getElementById('edit-toolbar').classList.remove('hidden');
-            const editables = [
-                'editable-title', 'editable-subtitle', 
-                'text-descargas', 'text-postinstalacion', 'text-creador'
-            ];
-            editables.forEach(id => {
-                const el = document.getElementById(id);
-                if(el) {
-                    el.contentEditable = "true";
-                    el.classList.add('border', 'border-dashed', 'border-[#38BDF8]/60', 'p-2', 'rounded-lg', 'bg-[#050811]/60');
-                }
-            });
-        }
-
-        function toggleEditMode() {
-            document.getElementById('edit-toolbar').classList.add('hidden');
-            const editables = [
-                'editable-title', 'editable-subtitle', 
-                'text-descargas', 'text-postinstalacion', 'text-creador'
-            ];
-            editables.forEach(id => {
-                const el = document.getElementById(id);
-                if(el) {
-                    el.contentEditable = "false";
-                    el.classList.remove('border', 'border-dashed', 'border-[#38BDF8]/60', 'p-2', 'rounded-lg', 'bg-[#050811]/60');
-                }
-            });
-            alert('¡Cambios guardados con éxito en la sesión actual, jefe!');
-        }
     </script>
 </body>
 </html>
