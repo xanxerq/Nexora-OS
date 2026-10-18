@@ -13,9 +13,9 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #050811; color: #F8FAFC; }
         .glass {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.3);
         }
         .glow-text {
             background: linear-gradient(135deg, #F8FAFC 0%, #38BDF8 100%);
@@ -35,15 +35,17 @@
     <header class="relative z-20 bg-[#070B14]/90 border-b border-[#1E293B] sticky top-0 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <div class="bg-[#38BDF8]/10 border border-[#38BDF8]/30 px-3 py-1.5 rounded-lg text-xs font-mono tracking-widest text-[#38BDF8]">
-                    GVA / NEXORA CORE
-                </div>
+                <button onclick="goHome()" class="flex items-center gap-2 cursor-pointer group text-left">
+                    <div class="bg-[#38BDF8]/10 border border-[#38BDF8]/30 px-3 py-1.5 rounded-lg text-xs font-mono tracking-widest text-[#38BDF8] group-hover:bg-[#38BDF8]/20 transition-all">
+                        GVA / NEXORA CORE
+                    </div>
+                </button>
             </div>
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-[#94A3B8]">
-                <a href="#inicio" class="hover:text-[#38BDF8] transition-colors">INICIO</a>
-                <a href="#descargas" class="hover:text-[#38BDF8] transition-colors">DESCARGAS</a>
-                <a href="#sistema" class="hover:text-[#38BDF8] transition-colors">SISTEMA</a>
-                <a href="#creador" class="hover:text-[#38BDF8] transition-colors">CREADOR</a>
+                <a href="#inicio" onclick="goHome()" class="hover:text-[#38BDF8] transition-colors">INICIO</a>
+                <a href="#descargas" onclick="selectCard('descargas')" class="hover:text-[#38BDF8] transition-colors">DESCARGAS</a>
+                <a href="#sistema" onclick="selectCard('info')" class="hover:text-[#38BDF8] transition-colors">SISTEMA</a>
+                <a href="#creador" onclick="selectCard('creador')" class="hover:text-[#38BDF8] transition-colors">CREADOR</a>
             </nav>
             <div>
                 <button onclick="openAdminModal()" class="px-4 py-2 bg-[#1E293B] border border-[#38BDF8]/40 text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#050811] rounded-xl text-xs font-bold transition-all shadow-[0_0_15px_rgba(56,189,248,0.2)]">
@@ -53,8 +55,8 @@
         </div>
     </header>
 
-    <!-- Hero Section (Estilo Lliurex Pro) -->
-    <section id="inicio" class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- Hero Section Principal (Visible en modo normal) -->
+    <section id="hero-section" class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Izquierda: Títulos y subtítulos -->
         <div class="lg:col-span-7 text-left space-y-6">
             <div class="flex items-center gap-3">
@@ -84,7 +86,7 @@
     </section>
 
     <!-- Main Lliurex Style Cards Section -->
-    <section id="descargas" class="relative z-10 max-w-7xl mx-auto px-6 py-8 w-full">
+    <section class="relative z-10 max-w-7xl mx-auto px-6 py-6 w-full">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Card 1: Información / Sistema -->
             <div id="card-info" onclick="selectCard('info')" class="glass rounded-2xl p-8 cursor-pointer border border-[#334155] hover:border-[#38BDF8] transition-all duration-300 group hover:-translate-y-1 shadow-xl">
@@ -123,28 +125,38 @@
             </div>
         </div>
 
-        <!-- Expanded Dynamic Panel (Contenido detallado al estilo Lliurex) -->
-        <div id="dynamic-panel" class="mt-8 glass rounded-2xl p-8 border border-[#38BDF8]/30 shadow-2xl">
-            <div id="panel-info" class="space-y-4">
-                <h4 class="text-xl font-bold text-[#38BDF8]">Información del Sistema</h4>
-                <p id="detail-info" class="text-[#94A3B8] leading-relaxed">
+        <!-- Expanded Dynamic Panel (Enfoque exclusivo al pulsar una tarjeta) -->
+        <div id="dynamic-panel" class="mt-8 glass rounded-3xl p-8 md:p-12 border border-[#38BDF8]/40 shadow-2xl transition-all duration-500">
+            <!-- Botón para volver a vista general si se desea -->
+            <div class="flex justify-between items-center mb-6 border-b border-[#1E293B] pb-4">
+                <span id="panel-badge" class="px-3 py-1 rounded-full bg-[#38BDF8]/10 text-[#38BDF8] text-xs font-mono font-bold tracking-widest uppercase">Vista Enfoque</span>
+                <button onclick="goHome()" class="text-xs text-[#94A3B8] hover:text-[#38BDF8] transition-colors flex items-center gap-1">
+                    ← Volver a Vista General
+                </button>
+            </div>
+
+            <div id="panel-info" class="space-y-6 text-left">
+                <h4 class="text-2xl md:text-3xl font-extrabold text-[#38BDF8]">Información del Sistema</h4>
+                <p id="detail-info" class="text-base md:text-lg text-[#94A3B8] leading-relaxed">
                     Nexora OS está construido sobre una base sólida de Kubuntu con el entorno gráfico KDE Plasma 6. Incorpora gestión optimizada de recursos, diseño visual abisal con efectos de transparencia y la herramienta Testify AI integrada de serie.
                 </p>
             </div>
-            <div id="panel-descargas" class="space-y-4 hidden">
-                <h4 class="text-xl font-bold text-[#38BDF8]">Centro de Descargas Oficial</h4>
-                <p id="detail-descargas" class="text-[#94A3B8] leading-relaxed">
+
+            <div id="panel-descargas" class="space-y-6 text-left hidden">
+                <h4 class="text-2xl md:text-3xl font-extrabold text-[#38BDF8]">Centro de Descargas Oficial</h4>
+                <p id="detail-descargas" class="text-base md:text-lg text-[#94A3B8] leading-relaxed">
                     Descarga la versión estable compilada para arquitecturas x86_64, lista para quemar en USB o instalar en particiones dedicadas.
                 </p>
-                <div class="pt-2">
-                    <a href="#" class="inline-flex items-center gap-2 px-6 py-3 bg-[#38BDF8] text-[#050811] font-bold rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:bg-[#7DD3FC] transition-all">
-                        <span>📥</span> Descargar Nexora OS 1.0 (ISO)
+                <div class="pt-4">
+                    <a href="#" class="inline-flex items-center gap-3 px-8 py-4 bg-[#38BDF8] text-[#050811] font-bold rounded-2xl shadow-[0_0_30px_rgba(56,189,248,0.4)] hover:bg-[#7DD3FC] hover:scale-105 transition-all">
+                        <span>📥</span> Descargar Nexora OS 1.0 (ISO Oficial)
                     </a>
                 </div>
             </div>
-            <div id="panel-creador" class="space-y-4 hidden">
-                <h4 class="text-xl font-bold text-[#38BDF8]">Acerca del Creador</h4>
-                <p id="detail-creador" class="text-[#94A3B8] leading-relaxed">
+
+            <div id="panel-creador" class="space-y-6 text-left hidden">
+                <h4 class="text-2xl md:text-3xl font-extrabold text-[#38BDF8]">Acerca del Creador</h4>
+                <p id="detail-creador" class="text-base md:text-lg text-[#94A3B8] leading-relaxed">
                     Desarrollado íntegramente por <strong>Xanxer</strong> (Alexander), combinando ingeniería de sistemas, scripting en terminal Linux y desarrollo web asistido por IA para crear un ecosistema operativo único y moderno.
                 </p>
             </div>
@@ -206,7 +218,7 @@
                 <span class="text-xs font-bold text-[#38BDF8] uppercase tracking-wider">Modo Edición Activo (Xanxer) - Haz clic en cualquier texto para modificarlo</span>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="toggleEditMode()" class="px-5 py-2.5 bg-[#38BDF8] text-[#050811] text-xs font-bold rounded-xl hover:bg-[#7DD3FC] transition-all shadow-[0_0_15px_rgba(56,189,248,0.4)">Guardar y Salir</button>
+                <button onclick="toggleEditMode()" class="px-5 py-2.5 bg-[#38BDF8] text-[#050811] text-xs font-bold rounded-xl hover:bg-[#7DD3FC] transition-all shadow-[0_0_15px_rgba(56,189,248,0.4)]">Guardar y Salir</button>
             </div>
         </div>
     </div>
@@ -218,20 +230,34 @@
 
     <script>
         function selectCard(sectionId) {
+            // Ocultar el hero principal para enfocar la atención en el contenido seleccionado
+            document.getElementById('hero-section').style.display = 'none';
+
             ['info', 'descargas', 'creador'].forEach(id => {
                 const panel = document.getElementById('panel-' + id);
                 const card = document.getElementById('card-' + id);
                 if (id === sectionId) {
                     panel.classList.remove('hidden');
-                    card.classList.add('border-[#38BDF8]', 'bg-[#1E293B]/40');
+                    card.classList.add('border-[#38BDF8]', 'bg-[#1E293B]/60', 'scale-[1.02]');
                 } else {
                     panel.classList.add('hidden');
-                    card.classList.remove('border-[#38BDF8]', 'bg-[#1E293B]/40');
+                    card.classList.remove('border-[#38BDF8]', 'bg-[#1E293B]/60', 'scale-[1.02]');
                 }
             });
+
+            // Desplazamiento suave hacia el panel de enfoque
+            document.getElementById('dynamic-panel').scrollIntoView({ behavior: 'smooth' });
         }
 
-        selectCard('info');
+        function goHome() {
+            // Volver a mostrar el hero principal y ocultar paneles
+            document.getElementById('hero-section').style.display = 'grid';
+            ['info', 'descargas', 'creador'].forEach(id => {
+                document.getElementById('panel-' + id).classList.add('hidden');
+                document.getElementById('card-' + id).classList.remove('border-[#38BDF8]', 'bg-[#1E293B]/60', 'scale-[1.02]');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         function openAdminModal() {
             document.getElementById('admin-modal').classList.remove('hidden');
